@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2FD87B0C-6A9F-45D9-8887-7EEC32C8897F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>LoginModule</RootNamespace>
+    <AssemblyName>Messenger</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>Y:\Intra\AppPublish\LoginMod\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://apps.ad.whitehinge.com/AppPublish/LoginMod/</InstallUrl>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>71</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Messenger.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Messenger.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Misc\SPC.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>LoginModule.My.MyApplication</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>BC21427865220AE1A01BDD8986B54E790480BF9A</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>SPC.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>chacticon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.9.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\Connector.NET 6.9\Assemblies\v4.5\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Controls\InboxOutbox.Designer.vb">
+      <DependentUpon>InboxOutbox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\InboxOutbox.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\InboxOutboxItem.Designer.vb">
+      <DependentUpon>InboxOutboxItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\InboxOutboxItem.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Messenger_Contact.Designer.vb">
+      <DependentUpon>Messenger_Contact.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Messenger_Contact.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Messenger_Conversation.Designer.vb">
+      <DependentUpon>Messenger_Conversation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Messenger_Conversation.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Message_From.Designer.vb">
+      <DependentUpon>Message_From.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Message_From.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Message_To.Designer.vb">
+      <DependentUpon>Message_To.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Message_To.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ScalableFromMessage.Designer.vb">
+      <DependentUpon>ScalableFromMessage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ScalableFromMessage.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Messenger\BigPictureDialog.Designer.vb">
+      <DependentUpon>BigPictureDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\BigPictureDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messenger\CreateNotification.Designer.vb">
+      <DependentUpon>CreateNotification.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\CreateNotification.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\FullscreenLogin.Designer.vb">
+      <DependentUpon>FullscreenLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Login\FullscreenLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\keypad.Designer.vb">
+      <DependentUpon>keypad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Login\keypad.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messenger\MessengerMain.Designer.vb">
+      <DependentUpon>MessengerMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\MessengerMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Misc\MySql.vb" />
+    <Compile Include="Messenger\Notification.Designer.vb">
+      <DependentUpon>Notification.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\Notification.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\ScalableToMsg.Designer.vb">
+      <DependentUpon>ScalableToMsg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ScalableToMsg.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\InboxOutbox.resx">
+      <DependentUpon>InboxOutbox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\InboxOutboxItem.resx">
+      <DependentUpon>InboxOutboxItem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Messenger_Contact.resx">
+      <DependentUpon>Messenger_Contact.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Messenger_Conversation.resx">
+      <DependentUpon>Messenger_Conversation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Message_From.resx">
+      <DependentUpon>Message_From.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Message_To.resx">
+      <DependentUpon>Message_To.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ScalableFromMessage.resx">
+      <DependentUpon>ScalableFromMessage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\BigPictureDialog.resx">
+      <DependentUpon>BigPictureDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\CreateNotification.resx">
+      <DependentUpon>CreateNotification.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\FullscreenLogin.resx">
+      <DependentUpon>FullscreenLogin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\keypad.resx">
+      <DependentUpon>keypad.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\MessengerMain.resx">
+      <DependentUpon>MessengerMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\Notification.resx">
+      <DependentUpon>Notification.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ScalableToMsg.resx">
+      <DependentUpon>ScalableToMsg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Misc\SPC.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fushmesh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lockicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\metro mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chacticon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chacticonALT.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Contact_Offline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Contact_Online.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Corner_BottomLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Corner_BottomRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Corner_TopLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Corner_TopRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Side_Bottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Side_Left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Side_Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Side_Top.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\To_Bottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\To_BubbleArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\To_Left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\To_Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\To_Top.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\From_Arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\From_Bottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\From_Left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\From_Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\From_Top.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loading_spinner.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="chacticon.ico" />
+    <None Include="Resources\FB_Settings.png" />
+    <None Include="Resources\Untitled-1.jpg" />
+    <None Include="Resources\Close.png" />
+    <None Include="Resources\Minimize.png" />
+    <None Include="Resources\Attachment.png" />
+    <None Include="Resources\Outbox.png" />
+    <None Include="Resources\Inbox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="chacticon.ico">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="MySql.Data">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Framework\Framework\Framework.vbproj">
+      <Project>{8a2b93b9-4651-40f3-bbf9-d8fd0474a719}</Project>
+      <Name>Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
