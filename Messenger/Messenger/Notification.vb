@@ -16,7 +16,7 @@ Public Class Notification
         Me.Close()
         'Update that it has been seen.
         Dim query As String = "UPDATE whldata.user_notifications SET notIsRead='False' WHERE notificationId=" + NotifID.ToString + ";"
-        Dim response As Object = MySql.insertupdate(query)
+        Dim response As Object = WHLClasses.MySql.insertupdate(query)
         Try
             Convert.ToInt16(response)
 

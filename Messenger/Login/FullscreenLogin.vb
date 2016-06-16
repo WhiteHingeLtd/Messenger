@@ -90,11 +90,11 @@ Public Class FullscreenLogin
 
     Public Sub LogoutUser(sender As Object)
         If sender.GetType = (New Timer).GetType Then
-            MySql.insertupdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGOUT TIMEOUT" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
+            WHLClasses.MySql.insertupdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGOUT TIMEOUT" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
         ElseIf sender.Text = "AppClose" Then
-            MySql.insertupdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGOUT APPCLOSE" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
+            WHLClasses.MySql.insertupdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGOUT APPCLOSE" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
         Else
-            MySql.insertupdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGOUT GENERIC" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
+            WHLClasses.MySql.insertupdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGOUT GENERIC" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
         End If
         Authd = False
         StopTimer()
@@ -225,7 +225,7 @@ Public Class FullscreenLogin
         End If
 
         'And we need to record the login to the login log.
-        MySql.insertupdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGIN" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
+        WHLClasses.MySql.insertupdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGIN" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
 
     End Sub
 
@@ -335,7 +335,7 @@ Public Class FullscreenLogin
 
         Dim NotifsWaiting As New ArrayList
         Dim startpos As Integer = 12
-        NotifsWaiting = MySql.SelectData("SELECT * FROM whldata.user_notifications WHERE payrollId=" + My.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notIsRead='True';")
+        NotifsWaiting = WHLClasses.MySql.SelectData("SELECT * FROM whldata.user_notifications WHERE payrollId=" + My.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notIsRead='True';")
         For Each Notideath As ArrayList In NotifsWaiting
             Dim newNotification As New Notification
             newNotification.NotificationTitle.Text = Notideath(2)
