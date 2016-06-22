@@ -1,5 +1,6 @@
 ﻿Imports System.Drawing
 Imports System.Windows.Forms
+Imports WHLClasses
 
 Public Class Messenger_Conversation
 
@@ -14,7 +15,7 @@ Public Class Messenger_Conversation
         ConversationHeader.Titletext = User.FullName
         TargetUserId = User.PayrollId
         Dim RecentMessages As New ArrayList
-        RecentMessages = MySql.SelectData("SELECT * FROM whldata.user_notifications WHERE (payrollId=" + TargetUserId.ToString + " AND UserFromId=" + My.FSL.FindWindow().AuthdEmpl.PayrollId.ToString + ") OR (UserFromId=" + TargetUserId.ToString + " AND  payrollId=" + My.FSL.FindWindow().AuthdEmpl.PayrollId.ToString + ") ORDER BY notificationId DESC LIMIT 50;")
+        RecentMessages = WHLClasses.MySql.SelectData("SELECT * FROM whldata.user_notifications WHERE (payrollId=" + TargetUserId.ToString + " AND UserFromId=" + My.FSL.FindWindow().AuthdEmpl.PayrollId.ToString + ") OR (UserFromId=" + TargetUserId.ToString + " AND  payrollId=" + My.FSL.FindWindow().AuthdEmpl.PayrollId.ToString + ") ORDER BY notificationId DESC LIMIT 50;")
         RecentMessages.Reverse()
 
         For Each Message As ArrayList In RecentMessages
@@ -73,7 +74,7 @@ Public Class Messenger_Conversation
         MessageTextBox.Text = "--TMBH--" + MessageTextBox.Text
         '-----   -----  -----   -----   -----
 
-        Dim responseInsert As Object = MySql.insertupdate("INSERT INTO whldata.user_notifications (payrollId, notificationTitle, notificationBody, notificationStyle, notExpiryDateTime, notIsRead, notImgLink, UserFromId) VALUES (" + TargetUserId.ToString + ",'" + "Messenger: " + My.FSL.FindWindow().AuthenticatedUser.FullName + "','" + MessageTextBox.Rtf.Replace("\", "\\").Replace("'", "\'") + "', 'Message','" + Now.ToShortDateString + " " + Now.ToLongTimeString + "','True', '" + "" + "', " + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + ");")
+        Dim responseInsert As Object = WHLClasses.MySql.insertupdate("INSERT INTO whldata.user_notifications (payrollId, notificationTitle, notificationBody, notificationStyle, notExpiryDateTime, notIsRead, notImgLink, UserFromId) VALUES (" + TargetUserId.ToString + ",'" + "Messenger: " + My.FSL.FindWindow().AuthenticatedUser.FullName + "','" + MessageTextBox.Rtf.Replace("\", "\\").Replace("'", "\'") + "', 'Message','" + Now.ToShortDateString + " " + Now.ToLongTimeString + "','True', '" + "" + "', " + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + ");")
         If Not responseInsert = 1 Then
             MsgBox(responseInsert)
         End If
@@ -87,7 +88,7 @@ Public Class Messenger_Conversation
 
     Private Sub UpdateNewMessages()
         Dim RecentMessages As Object
-        RecentMessages = MySql.SelectData("SELECT * FROM whldata.user_notifications WHERE (payrollId=" + TargetUserId.ToString + " AND UserFromId=" + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notificationId>" + LastMessageID.ToString + ") OR (UserFromId=" + TargetUserId.ToString + " AND  payrollId=" + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notificationId>" + LastMessageID.ToString + ") ORDER BY notificationId DESC LIMIT 50;")
+        RecentMessages = WHLClasses.MySql.SelectData("SELECT * FROM whldata.user_notifications WHERE (payrollId=" + TargetUserId.ToString + " AND UserFromId=" + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notificationId>" + LastMessageID.ToString + ") OR (UserFromId=" + TargetUserId.ToString + " AND  payrollId=" + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notificationId>" + LastMessageID.ToString + ") ORDER BY notificationId DESC LIMIT 50;")
         If RecentMessages.GetType = "".GetType Then
             MsgBox(RecentMessages)
         Else

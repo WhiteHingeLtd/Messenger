@@ -7,7 +7,7 @@ Public Class CreateNotification
         'If Not targetempno = 0 Then
         For Each selectedtarget As String In TargetEmp.SelectedItems
             Dim empNo As Integer = Convert.ToInt32(selectedtarget.ToString.Split(":")(1))
-            Dim responseInsert As Object = MySql.insertupdate("INSERT INTO whldata.user_notifications (payrollId, notificationTitle, notificationBody, notificationStyle, notExpiryDateTime, notIsRead, notImgLink, UserFromId) VALUES (" +
+            Dim responseInsert As Object = WHLClasses.MySql.insertupdate("INSERT INTO whldata.user_notifications (payrollId, notificationTitle, notificationBody, notificationStyle, notExpiryDateTime, notIsRead, notImgLink, UserFromId) VALUES (" +
                                                               empNo.ToString + ",'" + TargetTitle.Text.Replace("\", "\\").Replace("'", "\'") + "','" + TargetBody.Rtf.Replace("\", "\\").Replace("'", "\'") + "','Message','" +
                                                               Now.ToShortDateString + " " + Now.ToLongTimeString + "','True', '" + TargetFileNew.Text.Replace("\", "\\") + "', " + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + ");")
             If Not responseInsert = 1 Then

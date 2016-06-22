@@ -65,7 +65,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Misc\SPC.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>SPC.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>LoginModule.My.MyApplication</StartupObject>
@@ -86,9 +86,9 @@
     <ApplicationIcon>chacticon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=6.9.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\Connector.NET 6.9\Assemblies\v4.5\MySql.Data.dll</HintPath>
+      <HintPath>\\WIN-NOHLS1H9ER8\Profiles\Colin\.V5\Documents\Projects\Framework\Framework\Refs\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -202,7 +202,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Misc\MySql.vb" />
     <Compile Include="Messenger\Notification.Designer.vb">
       <DependentUpon>Notification.vb</DependentUpon>
     </Compile>
@@ -276,6 +275,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="Misc\SPC.pfx" />
+    <None Include="SPC.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Fushmesh.png" />

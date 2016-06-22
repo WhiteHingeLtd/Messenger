@@ -1,4 +1,6 @@
-﻿Public Class InboxOutbox
+﻿Imports WHLClasses
+
+Public Class InboxOutbox
 
 
 
@@ -19,10 +21,10 @@
         Dim ListOfMsgs As ArrayList
         If ZoneTitle.Titletext = "Inbox" Then
             'Get messages with PayrollID as my ID
-            ListOfMsgs = MySql.SelectData("SELECT * FROM whldata.user_notifications WHERE payrollId=" + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + " ORDER BY notificationId DESC LIMIT 100")
+            ListOfMsgs = WHLClasses.MySql.SelectData("SELECT * FROM whldata.user_notifications WHERE payrollId=" + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + " ORDER BY notificationId DESC LIMIT 100")
         Else
             'Gte messages with UserFromId as my id.
-            ListOfMsgs = MySql.SelectData("SELECT * FROM whldata.user_notifications WHERE UserFromId=" + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + " ORDER BY notificationId DESC LIMIT 100")
+            ListOfMsgs = WHLClasses.MySql.SelectData("SELECT * FROM whldata.user_notifications WHERE UserFromId=" + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + " ORDER BY notificationId DESC LIMIT 100")
         End If
         BuildList(ListOfMsgs)
 
