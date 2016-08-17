@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing
+Imports WHLClasses
 
 Public Class MessengerMain
 
@@ -21,23 +22,44 @@ Public Class MessengerMain
         IconFlashMode = 0
     End Sub
 
+    Private Sub AddContact(emp As Employee)
+        If emp.PayrollId = My.FSL.FindWindow().AuthenticatedUser.PayrollId Then
+            'ignore this one, no point chatting to ourself.
+        Else
+            'This is the one to use.
+            Dim NewContactListing As New Messenger_Contact
+            NewContactListing.Margin = New System.Windows.Forms.Padding(0)
+            emp.LoginStatus.Update()
+            NewContactListing.Contact = emp
+            ContactsPanel.Controls.Add(NewContactListing)
+        End If
+    End Sub
+
     Private Sub UpdateContactStatus()
+        Dim MyID As Integer = My.FSL.FindWindow().AuthenticatedUser.PayrollId
+        Dim query As String = "SELECT SUBSTRING_INDEX( GROUP_CONCAT(CAST(notificationId AS CHAR) ORDER BY notificationId DESC), ',', 1 ) AS notificationId, userFromId FROM whldata.user_notifications WHERE PayrollId=" + MyID.ToString + " GROUP BY UserFromId ORDER BY notificationId DESC;"
+        Dim Response As ArrayList = SelectData(query)
+
+        Dim PayrollIds As New List(Of Integer)
+
+        For Each msg As ArrayList In Response
+            PayrollIds.Add(msg(1))
+        Next
+
 
         ContactsPanel.SuspendLayout()
         ContactsPanel.Controls.Clear()
 
+        'First, add the ones we know.
+        For Each cool As Integer In PayrollIds
+            Dim emp As Employee = EmpList.FindEmployeeByID(cool)
+            If emp.Visible Then AddContact(emp)
+        Next
+
+        'Then add trhe rest
         For Each employee As WHLClasses.Employee In EmpList.Employees
-            If employee.Visible Then
-                If employee.PayrollId = My.FSL.FindWindow().AuthenticatedUser.PayrollId Then
-                    'ignore this one, no point chatting to ourself.
-                Else
-                    'This is the one to use.
-                    Dim NewContactListing As New Messenger_Contact
-                    NewContactListing.Margin = New System.Windows.Forms.Padding(0)
-                    employee.LoginStatus.Update()
-                    NewContactListing.Contact = employee
-                    ContactsPanel.Controls.Add(NewContactListing)
-                End If
+            If employee.Visible And Not (PayrollIds.Contains(employee.PayrollId)) Then
+                AddContact(employee)
             End If
         Next
         ContactsPanel.ResumeLayout()
@@ -105,4 +127,7 @@ Public Class MessengerMain
 
     End Sub
 
+    Private Sub MessengerMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

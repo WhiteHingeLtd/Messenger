@@ -27,13 +27,15 @@ Partial Class MessengerMain
         Me.IconSwapper = New System.Windows.Forms.Timer(Me.components)
         Me.ContactsPanel = New System.Windows.Forms.FlowLayoutPanel()
         Me.ConversationPanel = New System.Windows.Forms.Panel()
+        Me.Messenger_Conversation1 = New LoginModule.Messenger_Conversation()
         Me.InboxPanel = New System.Windows.Forms.Panel()
+        Me.InboxOutbox = New LoginModule.InboxOutbox()
         Me.MyInfo = New System.Windows.Forms.Panel()
-        Me.LoggedUserNew = New WHLClasses.Controls.FacebookMessengerStyleHeader()
-        Me.MainSettingsButton = New System.Windows.Forms.PictureBox()
         Me.OutboxButton = New System.Windows.Forms.Panel()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.LoggedUserNew = New WHLClasses.Controls.FacebookMessengerStyleHeader()
+        Me.MainSettingsButton = New System.Windows.Forms.PictureBox()
         Me.InboxButton = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -41,15 +43,13 @@ Partial Class MessengerMain
         Me.MainSettingsContextMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.LogOutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.QuitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.InboxOutbox = New LoginModule.InboxOutbox()
-        Me.Messenger_Conversation1 = New LoginModule.Messenger_Conversation()
         Me.ConversationPanel.SuspendLayout()
         Me.InboxPanel.SuspendLayout()
         Me.MyInfo.SuspendLayout()
-        Me.LoggedUserNew.SuspendLayout()
-        CType(Me.MainSettingsButton, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.OutboxButton.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LoggedUserNew.SuspendLayout()
+        CType(Me.MainSettingsButton, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.InboxButton.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MainSettingsContextMenu.SuspendLayout()
@@ -82,6 +82,16 @@ Partial Class MessengerMain
         Me.ConversationPanel.Size = New System.Drawing.Size(603, 768)
         Me.ConversationPanel.TabIndex = 7
         '
+        'Messenger_Conversation1
+        '
+        Me.Messenger_Conversation1.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.Messenger_Conversation1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Messenger_Conversation1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Messenger_Conversation1.Location = New System.Drawing.Point(0, 0)
+        Me.Messenger_Conversation1.Name = "Messenger_Conversation1"
+        Me.Messenger_Conversation1.Size = New System.Drawing.Size(603, 768)
+        Me.Messenger_Conversation1.TabIndex = 0
+        '
         'InboxPanel
         '
         Me.InboxPanel.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -94,6 +104,14 @@ Partial Class MessengerMain
         Me.InboxPanel.Size = New System.Drawing.Size(603, 768)
         Me.InboxPanel.TabIndex = 1
         '
+        'InboxOutbox
+        '
+        Me.InboxOutbox.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.InboxOutbox.Location = New System.Drawing.Point(0, 0)
+        Me.InboxOutbox.Name = "InboxOutbox"
+        Me.InboxOutbox.Size = New System.Drawing.Size(603, 768)
+        Me.InboxOutbox.TabIndex = 0
+        '
         'MyInfo
         '
         Me.MyInfo.BackColor = System.Drawing.Color.WhiteSmoke
@@ -104,30 +122,6 @@ Partial Class MessengerMain
         Me.MyInfo.Name = "MyInfo"
         Me.MyInfo.Size = New System.Drawing.Size(309, 93)
         Me.MyInfo.TabIndex = 5
-        '
-        'LoggedUserNew
-        '
-        Me.LoggedUserNew.BackColor = System.Drawing.Color.Transparent
-        Me.LoggedUserNew.BackgroundColor = System.Drawing.Color.White
-        Me.LoggedUserNew.BackgroundOpacity = 0.75!
-        Me.LoggedUserNew.BaseBorderColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.LoggedUserNew.Controls.Add(Me.MainSettingsButton)
-        Me.LoggedUserNew.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LoggedUserNew.Location = New System.Drawing.Point(0, 0)
-        Me.LoggedUserNew.Name = "LoggedUserNew"
-        Me.LoggedUserNew.Size = New System.Drawing.Size(310, 50)
-        Me.LoggedUserNew.TabIndex = 7
-        Me.LoggedUserNew.Titletext = "..."
-        '
-        'MainSettingsButton
-        '
-        Me.MainSettingsButton.BackgroundImage = Global.LoginModule.My.Resources.Resources.FB_Settings
-        Me.MainSettingsButton.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.MainSettingsButton.Location = New System.Drawing.Point(1, 1)
-        Me.MainSettingsButton.Name = "MainSettingsButton"
-        Me.MainSettingsButton.Size = New System.Drawing.Size(48, 48)
-        Me.MainSettingsButton.TabIndex = 0
-        Me.MainSettingsButton.TabStop = False
         '
         'OutboxButton
         '
@@ -159,6 +153,30 @@ Partial Class MessengerMain
         Me.Label2.Size = New System.Drawing.Size(58, 20)
         Me.Label2.TabIndex = 6
         Me.Label2.Text = "Outbox"
+        '
+        'LoggedUserNew
+        '
+        Me.LoggedUserNew.BackColor = System.Drawing.Color.Transparent
+        Me.LoggedUserNew.BackgroundColor = System.Drawing.Color.White
+        Me.LoggedUserNew.BackgroundOpacity = 0.75!
+        Me.LoggedUserNew.BaseBorderColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LoggedUserNew.Controls.Add(Me.MainSettingsButton)
+        Me.LoggedUserNew.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LoggedUserNew.Location = New System.Drawing.Point(0, 0)
+        Me.LoggedUserNew.Name = "LoggedUserNew"
+        Me.LoggedUserNew.Size = New System.Drawing.Size(310, 50)
+        Me.LoggedUserNew.TabIndex = 7
+        Me.LoggedUserNew.Titletext = "..."
+        '
+        'MainSettingsButton
+        '
+        Me.MainSettingsButton.BackgroundImage = Global.LoginModule.My.Resources.Resources.FB_Settings
+        Me.MainSettingsButton.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.MainSettingsButton.Location = New System.Drawing.Point(1, 1)
+        Me.MainSettingsButton.Name = "MainSettingsButton"
+        Me.MainSettingsButton.Size = New System.Drawing.Size(48, 48)
+        Me.MainSettingsButton.TabIndex = 0
+        Me.MainSettingsButton.TabStop = False
         '
         'InboxButton
         '
@@ -214,24 +232,6 @@ Partial Class MessengerMain
         Me.QuitToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
         Me.QuitToolStripMenuItem.Text = "Quit"
         '
-        'InboxOutbox
-        '
-        Me.InboxOutbox.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.InboxOutbox.Location = New System.Drawing.Point(0, 0)
-        Me.InboxOutbox.Name = "InboxOutbox"
-        Me.InboxOutbox.Size = New System.Drawing.Size(603, 768)
-        Me.InboxOutbox.TabIndex = 0
-        '
-        'Messenger_Conversation1
-        '
-        Me.Messenger_Conversation1.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.Messenger_Conversation1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Messenger_Conversation1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Messenger_Conversation1.Location = New System.Drawing.Point(0, 0)
-        Me.Messenger_Conversation1.Name = "Messenger_Conversation1"
-        Me.Messenger_Conversation1.Size = New System.Drawing.Size(603, 768)
-        Me.Messenger_Conversation1.TabIndex = 0
-        '
         'MessengerMain
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -248,11 +248,11 @@ Partial Class MessengerMain
         Me.ConversationPanel.ResumeLayout(False)
         Me.InboxPanel.ResumeLayout(False)
         Me.MyInfo.ResumeLayout(False)
-        Me.LoggedUserNew.ResumeLayout(False)
-        CType(Me.MainSettingsButton, System.ComponentModel.ISupportInitialize).EndInit()
         Me.OutboxButton.ResumeLayout(False)
         Me.OutboxButton.PerformLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LoggedUserNew.ResumeLayout(False)
+        CType(Me.MainSettingsButton, System.ComponentModel.ISupportInitialize).EndInit()
         Me.InboxButton.ResumeLayout(False)
         Me.InboxButton.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
