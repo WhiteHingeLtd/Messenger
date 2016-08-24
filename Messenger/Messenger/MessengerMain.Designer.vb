@@ -43,6 +43,7 @@ Partial Class MessengerMain
         Me.MainSettingsContextMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.LogOutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.QuitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ChangeLoginPINItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConversationPanel.SuspendLayout()
         Me.InboxPanel.SuspendLayout()
         Me.MyInfo.SuspendLayout()
@@ -216,21 +217,27 @@ Partial Class MessengerMain
         '
         'MainSettingsContextMenu
         '
-        Me.MainSettingsContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LogOutToolStripMenuItem, Me.QuitToolStripMenuItem})
+        Me.MainSettingsContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LogOutToolStripMenuItem, Me.ChangeLoginPINItem, Me.QuitToolStripMenuItem})
         Me.MainSettingsContextMenu.Name = "MainSettingsContextMenu"
-        Me.MainSettingsContextMenu.Size = New System.Drawing.Size(116, 48)
+        Me.MainSettingsContextMenu.Size = New System.Drawing.Size(171, 92)
         '
         'LogOutToolStripMenuItem
         '
         Me.LogOutToolStripMenuItem.Name = "LogOutToolStripMenuItem"
-        Me.LogOutToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
+        Me.LogOutToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.LogOutToolStripMenuItem.Text = "Log out"
         '
         'QuitToolStripMenuItem
         '
         Me.QuitToolStripMenuItem.Name = "QuitToolStripMenuItem"
-        Me.QuitToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
+        Me.QuitToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.QuitToolStripMenuItem.Text = "Quit"
+        '
+        'ChangeLoginPINItem
+        '
+        Me.ChangeLoginPINItem.Name = "ChangeLoginPINItem"
+        Me.ChangeLoginPINItem.Size = New System.Drawing.Size(170, 22)
+        Me.ChangeLoginPINItem.Text = "Change Login PIN"
         '
         'MessengerMain
         '
@@ -280,4 +287,5 @@ Partial Class MessengerMain
     Friend WithEvents MainSettingsContextMenu As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents LogOutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents QuitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ChangeLoginPINItem As System.Windows.Forms.ToolStripMenuItem
 End Class

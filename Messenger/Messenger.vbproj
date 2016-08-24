@@ -25,7 +25,7 @@
     <InstallUrl>http://apps.ad.whitehinge.com/AppPublish/LoginMod/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>72</ApplicationRevision>
+    <ApplicationRevision>73</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -187,6 +187,12 @@
     <Compile Include="Messenger\MessengerMain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Misc\ChangePIN.Designer.vb">
+      <DependentUpon>ChangePIN.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\ChangePIN.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -257,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ScalableToMsg.resx">
       <DependentUpon>ScalableToMsg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Misc\ChangePIN.resx">
+      <DependentUpon>ChangePIN.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <CustomToolNamespace>My.Resources</CustomToolNamespace>

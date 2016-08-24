@@ -151,14 +151,19 @@ Public Class FullscreenLogin
             userid = Userbox.Text.Substring(3)
             CardUsed = True
         ElseIf Userbox.TextLength = 0 Then
-            userid = 0
+            userid = "0"
         Else
             userid = Userbox.Text
         End If
         Dim target As Employee
         Try
             Try
+                'If IsNumeric(userid) Then
                 target = EmployeeList.FindEmployeeByID(Convert.ToInt16(userid))
+                'Else
+                '    target = EmployeeList.FindEmployeeByADUser(userid)
+                'End If
+
                 If CardUsed = False Then
                     'Check the pin
                     Dim keyback As DialogResult

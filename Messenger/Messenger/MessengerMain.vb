@@ -130,4 +130,19 @@ Public Class MessengerMain
     Private Sub MessengerMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
+
+    Private Sub ChangeLoginPINItem_Click(sender As Object, e As EventArgs) Handles ChangeLoginPINItem.Click
+        If MsgBox("Are you sure you want to change your login PIN?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+            Dim newpinwindow As New ChangePIN(EmpList.FindEmployeeByID(My.FSL.FindWindow().AuthenticatedUser.PayrollId))
+            Dim PinResult As MsgBoxResult = newpinwindow.ShowDialog()
+
+            If PinResult = MsgBoxResult.No Then
+                MsgBox("Pin change failed. See your administrator")
+            ElseIf PinResult = MsgBoxResult.Yes Then
+                MsgBox("Pin change completed successfully.")
+                EmpList = New EmployeeCollection(True)
+                EmpList.SaveThisCollection()
+            End If
+        End If
+    End Sub
 End Class
