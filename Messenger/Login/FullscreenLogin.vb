@@ -384,7 +384,12 @@ Public Class FullscreenLogin
     End Sub
 
     Private Sub SendANotificationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendANotificationToolStripMenuItem.Click
-        CreateNotification.ShowDialog()
+        Try
+            CreateNotification.ShowDialog()
+        Catch ex As InvalidOperationException
+            'MsgBox("The notification window is already open.")
+            CreateNotification.Focus()
+        End Try
 
     End Sub
 
