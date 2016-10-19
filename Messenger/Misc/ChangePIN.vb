@@ -73,6 +73,8 @@ Public Class ChangePIN
     End Sub
 
     Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
-        PinTxt.Text = PinTxt.Text.Substring(0, PinTxt.Text.Length - 1)
+        If PinTxt.Text.Length > 0 Then
+            PinTxt.Text = PinTxt.Text.Substring(0, PinTxt.Text.Length - 1)
+        End If
     End Sub
 End Class
