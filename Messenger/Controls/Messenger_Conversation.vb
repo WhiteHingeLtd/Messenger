@@ -16,51 +16,55 @@ Public Class Messenger_Conversation
         TargetUserId = User.PayrollId
         Dim RecentMessages As New ArrayList
         RecentMessages = WHLClasses.MySql.SelectData("SELECT * FROM whldata.user_notifications WHERE (payrollId=" + TargetUserId.ToString + " AND UserFromId=" + My.FSL.FindWindow().AuthdEmpl.PayrollId.ToString + ") OR (UserFromId=" + TargetUserId.ToString + " AND  payrollId=" + My.FSL.FindWindow().AuthdEmpl.PayrollId.ToString + ") ORDER BY notificationId DESC LIMIT 50;")
-        RecentMessages.Reverse()
 
-        For Each Message As ArrayList In RecentMessages
-            If Message(1) = TargetUserId Then
-                'We sent the message
-                Dim NewMessageBubble As New ScalableToMsg
-                If Message(7).ToString.Length > 0 Then
-                    Dim AnotherBubble As New ScalableToMsg
-                    AnotherBubble.SubText = Message(0).ToString + " - " + Message(5)
-                    AnotherBubble.ImagePath = Message(7).ToString
-                    ConvFlow.Controls.Add(AnotherBubble)
+
+        If RecentMessages.Count > 0 Then
+            RecentMessages.Reverse()
+
+            For Each Message As ArrayList In RecentMessages
+                If Message(1) = TargetUserId Then
+                    'We sent the message
+                    Dim NewMessageBubble As New ScalableToMsg
+                    If Message(7).ToString.Length > 0 Then
+                        Dim AnotherBubble As New ScalableToMsg
+                        AnotherBubble.SubText = Message(0).ToString + " - " + Message(5)
+                        AnotherBubble.ImagePath = Message(7).ToString
+                        ConvFlow.Controls.Add(AnotherBubble)
+                    End If
+                    NewMessageBubble.SubText = Message(0).ToString + " - " + Message(5)
+                    NewMessageBubble.MessageText = Message(3)
+
+                    '-----   -----  -----   -----   -----
+                    '07/05/16 - Gotta get rid of the "TheMessageBeginsHere" at the start
+                    NewMessageBubble.MessageText = NewMessageBubble.MessageText.Replace("--TMBH--", "")
+                    '-----   -----  -----   -----   -----
+
+                    ConvFlow.Controls.Add(NewMessageBubble)
+                    'ConvFlow.ScrollControlIntoView(NewMessageBubble)   31/12/2015 - Performance Improvement, don't scroll until messages are finished loading, then just scroll to the bottom. 
+
+                Else
+                    'They sent the message.
+                    Dim NewMessageBubble As New ScalableFromMessage
+                    If Message(7).ToString.Length > 0 Then
+                        Dim AnotherBubble As New ScalableFromMessage
+                        AnotherBubble.SubText = Message(0).ToString + " - " + Message(5)
+                        AnotherBubble.ImagePath = Message(7).ToString
+                        ConvFlow.Controls.Add(AnotherBubble)
+                    End If
+                    NewMessageBubble.SubText = Message(0).ToString + " - " + Message(5)
+                    NewMessageBubble.MessageText = Message(3)
+
+                    '-----   -----  -----   -----   -----
+                    '07/05/16 - Gotta get rid of the "TheMessageBeginsHere" at the start
+                    NewMessageBubble.MessageText = NewMessageBubble.MessageText.Replace("--TMBH--", "")
+                    '-----   -----  -----   -----   -----
+
+                    ConvFlow.Controls.Add(NewMessageBubble)
+                    'ConvFlow.ScrollControlIntoView(NewMessageBubble)  31/12/2015 - Performance Improvement, don't scroll until messages are finished loading, then just scroll to the bottom. 
                 End If
-                NewMessageBubble.SubText = Message(0).ToString + " - " + Message(5)
-                NewMessageBubble.MessageText = Message(3)
-
-                '-----   -----  -----   -----   -----
-                '07/05/16 - Gotta get rid of the "TheMessageBeginsHere" at the start
-                NewMessageBubble.MessageText = NewMessageBubble.MessageText.Replace("--TMBH--", "")
-                '-----   -----  -----   -----   -----
-
-                ConvFlow.Controls.Add(NewMessageBubble)
-                'ConvFlow.ScrollControlIntoView(NewMessageBubble)   31/12/2015 - Performance Improvement, don't scroll until messages are finished loading, then just scroll to the bottom. 
-
-            Else
-                'They sent the message.
-                Dim NewMessageBubble As New ScalableFromMessage
-                If Message(7).ToString.Length > 0 Then
-                    Dim AnotherBubble As New ScalableFromMessage
-                    AnotherBubble.SubText = Message(0).ToString + " - " + Message(5)
-                    AnotherBubble.ImagePath = Message(7).ToString
-                    ConvFlow.Controls.Add(AnotherBubble)
-                End If
-                NewMessageBubble.SubText = Message(0).ToString + " - " + Message(5)
-                NewMessageBubble.MessageText = Message(3)
-
-                '-----   -----  -----   -----   -----
-                '07/05/16 - Gotta get rid of the "TheMessageBeginsHere" at the start
-                NewMessageBubble.MessageText = NewMessageBubble.MessageText.Replace("--TMBH--", "")
-                '-----   -----  -----   -----   -----
-
-                ConvFlow.Controls.Add(NewMessageBubble)
-                'ConvFlow.ScrollControlIntoView(NewMessageBubble)  31/12/2015 - Performance Improvement, don't scroll until messages are finished loading, then just scroll to the bottom. 
-            End If
-            LastMessageID = Message(0)
-        Next
+                LastMessageID = Message(0)
+            Next
+        End If
         Application.DoEvents()
         ConvFlow.AutoScrollPosition = New Point(0, 99999)
         ConvFlow_SizeChanged(Nothing, Nothing)
