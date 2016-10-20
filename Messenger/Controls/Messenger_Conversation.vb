@@ -66,7 +66,11 @@ Public Class Messenger_Conversation
             Next
         End If
         Application.DoEvents()
-        ConvFlow.AutoScrollPosition = New Point(0, 99999)
+        If RecentMessages.Count > 0 Then
+            ConvFlow.AutoScrollPosition = New Point(0, ConvFlow.Controls(RecentMessages.Count - 1).Bottom) 'Don't get me wrong, a height of 99999 is unlikely to become an issue, buuut...
+        Else
+            ConvFlow.AutoScrollPosition = New Point(0, 0)
+        End If
         ConvFlow_SizeChanged(Nothing, Nothing)
         OneSecUpdates.Enabled = True
     End Sub
