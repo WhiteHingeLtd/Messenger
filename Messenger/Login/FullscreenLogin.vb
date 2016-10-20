@@ -362,7 +362,12 @@ Public Class FullscreenLogin
                 newNotification.IconBox.Visible = True
             End If
             If Notideath(7).ToString.Length > 0 Then
+                newNotification.ProperBody.Left = 126
+                newNotification.ProperBody.Width = 442
                 newNotification.IconBox.ImageLocation = Notideath(7)
+            Else
+                newNotification.ProperBody.Left = 6
+                newNotification.ProperBody.Width = 562
             End If
             Dim hwnd As Integer
             hwnd = User32.GetActiveWindow
