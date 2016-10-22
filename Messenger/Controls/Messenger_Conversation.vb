@@ -80,10 +80,11 @@ Public Class Messenger_Conversation
 
         '-----   -----  -----   -----   -----
         '07/05/16 - Added TheMessageBeginsHere. This ensures formatting is removed.
-        MessageTextBox.Text = "--TMBH--" + MessageTextBox.Text
+        '22/10/16 - Removed it, because formatting will no longer exist >:3
+        'MessageTextBox.Text = "--TMBH--" + MessageTextBox.Text
         '-----   -----  -----   -----   -----
 
-        Dim responseInsert As Object = WHLClasses.MySql.insertupdate("INSERT INTO whldata.user_notifications (payrollId, notificationTitle, notificationBody, notificationStyle, notExpiryDateTime, notIsRead, notImgLink, UserFromId) VALUES (" + TargetUserId.ToString + ",'" + "Messenger: " + My.FSL.FindWindow().AuthenticatedUser.FullName + "','" + MessageTextBox.Rtf.Replace("\", "\\").Replace("'", "\'") + "', 'Message','" + Now.ToShortDateString + " " + Now.ToLongTimeString + "','True', '" + "" + "', " + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + ");")
+        Dim responseInsert As Object = WHLClasses.MySQL.insertUpdate("INSERT INTO whldata.user_notifications (payrollId, notificationTitle, notificationBody, notificationStyle, notExpiryDateTime, notIsRead, notImgLink, UserFromId) VALUES (" + TargetUserId.ToString + ",'" + "Messenger: " + My.FSL.FindWindow().AuthenticatedUser.FullName + "','" + MessageTextBox.Text + "', 'Message','" + Now.ToShortDateString + " " + Now.ToLongTimeString + "','True', '" + "" + "', " + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + ");")
         If Not responseInsert = 1 Then
             MsgBox(responseInsert)
         End If

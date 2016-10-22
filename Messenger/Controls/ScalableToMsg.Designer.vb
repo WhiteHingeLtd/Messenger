@@ -41,7 +41,7 @@ Partial Class ScalableToMsg
         Me.ActualMessage.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.ActualMessage.ContextMenuStrip = Me.ContextMenuStrip2
         Me.ActualMessage.Cursor = System.Windows.Forms.Cursors.Default
-        Me.ActualMessage.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ActualMessage.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!)
         Me.ActualMessage.ForeColor = System.Drawing.Color.Black
         Me.ActualMessage.Location = New System.Drawing.Point(181, 11)
         Me.ActualMessage.Name = "ActualMessage"

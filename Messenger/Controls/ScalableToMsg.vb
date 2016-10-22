@@ -17,19 +17,38 @@ Public Class ScalableToMsg
     End Property
     Public Property MessageText() As String
         Set(value As String)
-
-            pMessageText = value
-            Try
-                ActualMessage.Rtf = value
-            Catch ex As Exception
-                ActualMessage.Text = value
-            End Try
+            Dim betterText As String = RTFMurder(value)
+            pMessageText = betterText
+            ActualMessage.Text = betterText
             GC.Collect()
         End Set
         Get
             Return pMessageText
         End Get
     End Property
+
+    Private Function RTFMurder(value As String) As String
+        Dim Cool As String
+        Cool = value
+        'Shitty formatting time
+        Cool = Cool.Replace("{\rtf1\ansi\ansicpg1252\deff0\deflang2057{\fonttbl{\f0\fnil\fcharset0 Segoe UI;}}", "").Replace("\viewkind4\uc1\pard\f0\fs23", "").Replace("\par } ", "").Replace("\par", "")
+        Cool = Cool.Replace(vbCrLf, "")
+        Cool = Cool.Replace("{\rtf1\ansi\deff0{\fonttbl{\f0\fnil\fcharset0 Segoe UI;}}\viewkind4\uc1d\lang2057\f0\fs23", "")
+        Cool = Cool.Replace("{\rtf1\ansi\deff0{\fonttbl{\f0\fnil Consolas;}}{\colortbl", "").Replace(";\red0\green0\blue255;\red255\green255\blue255;}\viewkind4\uc1d\cf1\highlight2\lang2057\f0\fs19 ", "").Replace("{\rtf1\ansi\deff0{\fonttbl{\f0\fnil\fcharset0 Calibri;}}\viewkind4\uc1d\lang9\f0\fs22 ", "")
+        Dim CoolWithoutFormatting As String
+        Dim removeFromHere = "--TMBH--"
+        Dim killTheFormat As Integer
+        If InStr(Cool, removeFromHere) Then
+            killTheFormat = InStr(Cool, removeFromHere)
+            CoolWithoutFormatting = Cool.Substring(killTheFormat + removeFromHere.Length - 1)
+            Cool = CoolWithoutFormatting
+        End If
+        If Cool.EndsWith("}") Then
+            Cool = Cool.Substring(0, Cool.Length - 1)
+        End If
+        Return Cool.Trim
+    End Function
+
     Public Property SubText() As String
         Set(value As String)
             pSubText = value
