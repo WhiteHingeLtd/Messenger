@@ -67,9 +67,10 @@ Public Class Messenger_Conversation
         End If
         Application.DoEvents()
         If RecentMessages.Count > 0 Then
-            ConvFlow.AutoScrollPosition = New Point(0, ConvFlow.Controls(RecentMessages.Count - 1).Bottom) 'Don't get me wrong, a height of 99999 is unlikely to become an issue, buuut...
+            ConvFlow.VerticalScroll.Value = ConvFlow.VerticalScroll.Maximum
+            atBottomOfPage = True
         Else
-            ConvFlow.AutoScrollPosition = New Point(0, 0)
+            'ConvFlow.AutoScrollPosition = New Point(0, 0)
         End If
         ConvFlow_SizeChanged(Nothing, Nothing)
         OneSecUpdates.Enabled = True
@@ -170,12 +171,39 @@ Public Class Messenger_Conversation
     End Sub
 
     Private Sub MessageTextBox_ContentsResized(sender As Object, e As ContentsResizedEventArgs) Handles MessageTextBox.ContentsResized
+        Dim currentHeight As Integer = SendPanel.Height
+        Dim changedValue As Boolean = False
         If e.NewRectangle.Height < 120 Then
             SendPanel.Height = e.NewRectangle.Height + 5
         Else
             SendPanel.Height = 120 + 5
-
         End If
+        Application.DoEvents()
+
+        If Not currentHeight = SendPanel.Height Then
+            If atBottomOfPage Then
+                If ConvFlow.Controls.Count > 0 Then
+                    'ConvFlow.AutoScrollPosition = New Point(0, ConvFlow.Controls(ConvFlow.Controls.Count - 1).Bottom)
+                    ConvFlow.VerticalScroll.Value = ConvFlow.VerticalScroll.Maximum
+                Else
+                    'ConvFlow.AutoScrollPosition = New Point(0, 0)
+                End If
+            End If
+        End If
+    End Sub
+
+    Dim atBottomOfPage As Boolean = False
+    Private Sub CheckScrollPoint() Handles ConvFlow.MouseWheel, ConvFlow.Scroll
+        If ConvFlow.Controls.Count > 0 Then
+            Dim theControl As Control = ConvFlow.Controls(ConvFlow.Controls.Count - 1)
+
+            If ConvFlow.Height >= theControl.Location.Y + theControl.height Then
+                atBottomOfPage = True
+            Else
+                atBottomOfPage = False
+            End If
+        End If
+
     End Sub
 
     Private Sub ConvFlow_SizeChanged(sender As Object, e As EventArgs) Handles ConvFlow.SizeChanged
