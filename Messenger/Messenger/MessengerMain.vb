@@ -40,9 +40,33 @@ Public Class MessengerMain
         Dim query As String = "SELECT SUBSTRING_INDEX( GROUP_CONCAT(CAST(notificationId AS CHAR) ORDER BY notificationId DESC), ',', 1 ) AS notificationId, userFromId FROM whldata.user_notifications WHERE PayrollId=" + MyID.ToString + " GROUP BY UserFromId ORDER BY notificationId DESC;"
         Dim Response As ArrayList = SelectData(query)
 
+        Dim SortedResponse As New ArrayList
+        Dim converterint As Integer = 0
+        Dim converterstring As String
+        Dim Int2StrList As New List(Of String)
+        Dim Fmt As String = "00000000000" 'Magic formatting number thing! ... Gonna need to update this on message 100,000,000,000!! Don't think that's happening anytime soon
+        For Each notifData As ArrayList In Response
+            converterint = Convert.ToInt32(notifData(0)) 'So lets make our ID an integer
+            converterstring = converterint.ToString(Fmt) 'Then format it because PADDING DOESN'T WANNA WORK.
+            Int2StrList.Add(converterstring) 'Then add it.
+        Next
+        Int2StrList.Sort()
+        Int2StrList.Reverse()
+        For Each intstring As String In Int2StrList 'So for each number in the list
+            For Each line As ArrayList In Response 'Check our arrays
+                If intstring.EndsWith(line(0)) Then 'If the string ends with the number we have
+                    Dim str As String = intstring.Replace(line(0).ToString, "").Replace("0", "") 'We need to check that there's no extra stuff
+                    If str = "" Then 'So in removing the number, if this is the right one, all we should have is padding
+                        SortedResponse.Add(line) 'If so, add the line, exit the loop. Next number. GO! GO! GO!
+                        Exit For
+                    End If
+                End If
+            Next
+        Next
+
         Dim PayrollIds As New List(Of Integer)
 
-        For Each msg As ArrayList In Response
+        For Each msg As ArrayList In SortedResponse
             PayrollIds.Add(msg(1))
         Next
 
