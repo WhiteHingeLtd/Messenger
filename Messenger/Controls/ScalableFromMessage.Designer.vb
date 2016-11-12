@@ -29,9 +29,14 @@ Partial Class ScalableFromMessage
         Me.CopyMessageToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopySelectionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictureBoxA = New System.Windows.Forms.PictureBox()
+        Me.DateTimeBox = New System.Windows.Forms.TextBox()
         Me.ContextMenuStrip2.SuspendLayout()
         CType(Me.PictureBoxA, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'SubtextTooltip
+        '
+        Me.SubtextTooltip.AutomaticDelay = 250
         '
         'ActualMessage
         '
@@ -83,17 +88,27 @@ Partial Class ScalableFromMessage
         Me.PictureBoxA.TabStop = False
         Me.PictureBoxA.Visible = False
         '
+        'DateTimeBox
+        '
+        Me.DateTimeBox.Location = New System.Drawing.Point(418, 3)
+        Me.DateTimeBox.Name = "DateTimeBox"
+        Me.DateTimeBox.ReadOnly = True
+        Me.DateTimeBox.Size = New System.Drawing.Size(108, 20)
+        Me.DateTimeBox.TabIndex = 6
+        '
         'ScalableFromMessage
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
+        Me.Controls.Add(Me.DateTimeBox)
         Me.Controls.Add(Me.PictureBoxA)
         Me.Controls.Add(Me.ActualMessage)
         Me.Margin = New System.Windows.Forms.Padding(1)
         Me.Name = "ScalableFromMessage"
-        Me.Size = New System.Drawing.Size(417, 228)
+        Me.Size = New System.Drawing.Size(542, 228)
         Me.ContextMenuStrip2.ResumeLayout(False)
         CType(Me.PictureBoxA, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -103,4 +118,5 @@ Partial Class ScalableFromMessage
     Friend WithEvents ContextMenuStrip2 As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents CopyMessageToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CopySelectionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DateTimeBox As System.Windows.Forms.TextBox
 End Class

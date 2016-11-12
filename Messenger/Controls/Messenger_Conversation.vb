@@ -15,7 +15,7 @@ Public Class Messenger_Conversation
         ConversationHeader.Titletext = User.FullName
         TargetUserId = User.PayrollId
         Dim RecentMessages As New ArrayList
-        RecentMessages = WHLClasses.MySql.SelectData("SELECT * FROM whldata.user_notifications WHERE (payrollId=" + TargetUserId.ToString + " AND UserFromId=" + My.FSL.FindWindow().AuthdEmpl.PayrollId.ToString + ") OR (UserFromId=" + TargetUserId.ToString + " AND  payrollId=" + My.FSL.FindWindow().AuthdEmpl.PayrollId.ToString + ") ORDER BY notificationId DESC LIMIT 50;")
+        RecentMessages = WHLClasses.MySQL.SelectData("SELECT * FROM whldata.user_notifications WHERE (payrollId=" + TargetUserId.ToString + " AND UserFromId=" + My.FSL.FindWindow().AuthdEmpl.PayrollId.ToString + ") OR (UserFromId=" + TargetUserId.ToString + " AND  payrollId=" + My.FSL.FindWindow().AuthdEmpl.PayrollId.ToString + ") ORDER BY notificationId DESC LIMIT 150;")
 
 
         If RecentMessages.Count > 0 Then
@@ -28,10 +28,12 @@ Public Class Messenger_Conversation
                     If Message(7).ToString.Length > 0 Then
                         Dim AnotherBubble As New ScalableToMsg
                         AnotherBubble.SubText = Message(0).ToString + " - " + Message(5)
+                        AnotherBubble.DateTimeBox.Text = Message(5).ToString
                         AnotherBubble.ImagePath = Message(7).ToString
                         ConvFlow.Controls.Add(AnotherBubble)
                     End If
                     NewMessageBubble.SubText = Message(0).ToString + " - " + Message(5)
+                    NewMessageBubble.DateTimeBox.Text = Message(5).ToString
                     NewMessageBubble.MessageText = Message(3)
 
                     '-----   -----  -----   -----   -----
@@ -48,10 +50,12 @@ Public Class Messenger_Conversation
                     If Message(7).ToString.Length > 0 Then
                         Dim AnotherBubble As New ScalableFromMessage
                         AnotherBubble.SubText = Message(0).ToString + " - " + Message(5)
+                        AnotherBubble.DateTimeBox.Text = Message(5).ToString
                         AnotherBubble.ImagePath = Message(7).ToString
                         ConvFlow.Controls.Add(AnotherBubble)
                     End If
                     NewMessageBubble.SubText = Message(0).ToString + " - " + Message(5)
+                    NewMessageBubble.DateTimeBox.Text = Message(5).ToString
                     NewMessageBubble.MessageText = Message(3)
 
                     '-----   -----  -----   -----   -----
@@ -96,7 +100,7 @@ Public Class Messenger_Conversation
 
     Private Sub UpdateNewMessages()
         Dim RecentMessages As Object
-        RecentMessages = WHLClasses.MySql.SelectData("SELECT * FROM whldata.user_notifications WHERE (payrollId=" + TargetUserId.ToString + " AND UserFromId=" + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notificationId>" + LastMessageID.ToString + ") OR (UserFromId=" + TargetUserId.ToString + " AND  payrollId=" + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notificationId>" + LastMessageID.ToString + ") ORDER BY notificationId DESC LIMIT 50;")
+        RecentMessages = WHLClasses.MySQL.SelectData("SELECT * FROM whldata.user_notifications WHERE (payrollId=" + TargetUserId.ToString + " AND UserFromId=" + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notificationId>" + LastMessageID.ToString + ") OR (UserFromId=" + TargetUserId.ToString + " AND  payrollId=" + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notificationId>" + LastMessageID.ToString + ") ORDER BY notificationId DESC LIMIT 150;")
         If RecentMessages.GetType = "".GetType Then
             MsgBox(RecentMessages)
         Else
@@ -111,10 +115,12 @@ Public Class Messenger_Conversation
                     If Message(7).ToString.Length > 0 Then
                         Dim AnotherBubble As New ScalableToMsg
                         AnotherBubble.SubText = Message(0).ToString + " - " + Message(5)
+                        AnotherBubble.DateTimeBox.Text = Message(5).ToString
                         AnotherBubble.ImagePath = Message(7).ToString
                         ConvFlow.Controls.Add(AnotherBubble)
                     End If
                     NewMessageBubble.SubText = Message(0).ToString + " - " + Message(5)
+                    NewMessageBubble.DateTimeBox.Text = Message(5).ToString
                     NewMessageBubble.MessageText = Message(3)
 
                     '-----   -----  -----   -----   -----
@@ -132,10 +138,12 @@ Public Class Messenger_Conversation
                     If Message(7).ToString.Length > 0 Then
                         Dim AnotherBubble As New ScalableFromMessage
                         AnotherBubble.SubText = Message(0).ToString + " - " + Message(5)
+                        AnotherBubble.DateTimeBox.Text = Message(5).ToString
                         AnotherBubble.ImagePath = Message(7).ToString
                         ConvFlow.Controls.Add(AnotherBubble)
                     End If
                     NewMessageBubble.SubText = Message(0).ToString + " - " + Message(5)
+                    NewMessageBubble.DateTimeBox.Text = Message(5).ToString
                     NewMessageBubble.MessageText = Message(3)
 
                     '-----   -----  -----   -----   -----

@@ -29,6 +29,7 @@ Partial Class ScalableToMsg
         Me.CopySelectionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SubTextTooltip = New System.Windows.Forms.ToolTip(Me.components)
         Me.PictureBoxA = New System.Windows.Forms.PictureBox()
+        Me.DateTimeBox = New System.Windows.Forms.TextBox()
         Me.ContextMenuStrip2.SuspendLayout()
         CType(Me.PictureBoxA, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -50,12 +51,14 @@ Partial Class ScalableToMsg
         Me.ActualMessage.Size = New System.Drawing.Size(400, 206)
         Me.ActualMessage.TabIndex = 1
         Me.ActualMessage.Text = "asdasd"
+        Me.SubTextTooltip.SetToolTip(Me.ActualMessage, "ChangeMe")
         '
         'ContextMenuStrip2
         '
         Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyMessageToolStripMenuItem1, Me.CopySelectionToolStripMenuItem})
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
         Me.ContextMenuStrip2.Size = New System.Drawing.Size(154, 48)
+        Me.SubTextTooltip.SetToolTip(Me.ContextMenuStrip2, "ChangeMe")
         '
         'CopyMessageToolStripMenuItem1
         '
@@ -69,6 +72,10 @@ Partial Class ScalableToMsg
         Me.CopySelectionToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
         Me.CopySelectionToolStripMenuItem.Text = "Copy Selection"
         '
+        'SubTextTooltip
+        '
+        Me.SubTextTooltip.AutomaticDelay = 250
+        '
         'PictureBoxA
         '
         Me.PictureBoxA.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -81,19 +88,31 @@ Partial Class ScalableToMsg
         Me.PictureBoxA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBoxA.TabIndex = 4
         Me.PictureBoxA.TabStop = False
+        Me.SubTextTooltip.SetToolTip(Me.PictureBoxA, "ChangeMe")
         Me.PictureBoxA.Visible = False
+        '
+        'DateTimeBox
+        '
+        Me.DateTimeBox.Location = New System.Drawing.Point(51, 3)
+        Me.DateTimeBox.Name = "DateTimeBox"
+        Me.DateTimeBox.ReadOnly = True
+        Me.DateTimeBox.Size = New System.Drawing.Size(108, 20)
+        Me.DateTimeBox.TabIndex = 5
         '
         'ScalableToMsg
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
+        Me.Controls.Add(Me.DateTimeBox)
         Me.Controls.Add(Me.PictureBoxA)
         Me.Controls.Add(Me.ActualMessage)
         Me.Margin = New System.Windows.Forms.Padding(0)
         Me.Name = "ScalableToMsg"
         Me.Size = New System.Drawing.Size(593, 227)
+        Me.SubTextTooltip.SetToolTip(Me, "ChangeMe")
         Me.ContextMenuStrip2.ResumeLayout(False)
         CType(Me.PictureBoxA, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -103,4 +122,5 @@ Partial Class ScalableToMsg
     Friend WithEvents ContextMenuStrip2 As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents CopyMessageToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CopySelectionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DateTimeBox As System.Windows.Forms.TextBox
 End Class

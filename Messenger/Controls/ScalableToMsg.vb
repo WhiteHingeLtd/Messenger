@@ -52,7 +52,9 @@ Public Class ScalableToMsg
     Public Property SubText() As String
         Set(value As String)
             pSubText = value
-            Me.SubtextTooltip.SetToolTip(Me, pSubText)
+            SubTextTooltip.SetToolTip(Me, pSubText)
+            SubTextTooltip.SetToolTip(ActualMessage, pSubText)
+            SubTextTooltip.SetToolTip(PictureBoxA, pSubText)
         End Set
         Get
             Return pSubText
