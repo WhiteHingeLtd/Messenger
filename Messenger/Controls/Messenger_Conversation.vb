@@ -15,7 +15,7 @@ Public Class Messenger_Conversation
         ConversationHeader.Titletext = User.FullName
         TargetUserId = User.PayrollId
         Dim RecentMessages As New ArrayList
-        RecentMessages = WHLClasses.MySQL.SelectData("SELECT * FROM whldata.user_notifications WHERE (payrollId=" + TargetUserId.ToString + " AND UserFromId=" + My.FSL.FindWindow().AuthdEmpl.PayrollId.ToString + ") OR (UserFromId=" + TargetUserId.ToString + " AND  payrollId=" + My.FSL.FindWindow().AuthdEmpl.PayrollId.ToString + ") ORDER BY notificationId DESC LIMIT 150;")
+        RecentMessages = WHLClasses.MySQL.SelectData("SELECT * FROM whldata.user_notifications WHERE (payrollId=" + TargetUserId.ToString + " AND UserFromId=" + My.FSL.FindWindow().AuthdEmpl.PayrollId.ToString + ") OR (UserFromId=" + TargetUserId.ToString + " AND  payrollId=" + My.FSL.FindWindow().AuthdEmpl.PayrollId.ToString + ") ORDER BY notificationId DESC LIMIT 100;")
 
 
         If RecentMessages.Count > 0 Then
@@ -100,7 +100,7 @@ Public Class Messenger_Conversation
 
     Private Sub UpdateNewMessages()
         Dim RecentMessages As Object
-        RecentMessages = WHLClasses.MySQL.SelectData("SELECT * FROM whldata.user_notifications WHERE (payrollId=" + TargetUserId.ToString + " AND UserFromId=" + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notificationId>" + LastMessageID.ToString + ") OR (UserFromId=" + TargetUserId.ToString + " AND  payrollId=" + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notificationId>" + LastMessageID.ToString + ") ORDER BY notificationId DESC LIMIT 150;")
+        RecentMessages = WHLClasses.MySQL.SelectData("SELECT * FROM whldata.user_notifications WHERE (payrollId=" + TargetUserId.ToString + " AND UserFromId=" + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notificationId>" + LastMessageID.ToString + ") OR (UserFromId=" + TargetUserId.ToString + " AND  payrollId=" + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notificationId>" + LastMessageID.ToString + ") ORDER BY notificationId DESC LIMIT 100;")
         If RecentMessages.GetType = "".GetType Then
             MsgBox(RecentMessages)
         Else

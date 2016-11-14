@@ -82,10 +82,9 @@ Partial Class ChangePIN
         'PinTxt
         '
         Me.PinTxt.Location = New System.Drawing.Point(6, 17)
-        Me.PinTxt.Multiline = True
         Me.PinTxt.Name = "PinTxt"
         Me.PinTxt.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.PinTxt.Size = New System.Drawing.Size(330, 66)
+        Me.PinTxt.Size = New System.Drawing.Size(330, 54)
         Me.PinTxt.TabIndex = 13
         Me.PinTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '

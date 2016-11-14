@@ -111,4 +111,12 @@ Public Class ScalableToMsg
     Private Sub ActualMessage_LinkClicked(sender As Object, e As System.Windows.Forms.LinkClickedEventArgs) Handles ActualMessage.LinkClicked
         Process.Start(e.LinkText)
     End Sub
+
+    Private Sub DateTimeBox_MouseHover(sender As Object, e As EventArgs) Handles DateTimeBox.MouseHover
+        DateTimeBox.ForeColor = Color.Black
+    End Sub
+
+    Private Sub DateTimeBox_MouseLeave(sender As Object, e As EventArgs) Handles DateTimeBox.MouseLeave
+        DateTimeBox.ForeColor = Color.DimGray
+    End Sub
 End Class

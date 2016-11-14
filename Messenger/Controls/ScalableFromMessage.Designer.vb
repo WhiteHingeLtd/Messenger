@@ -29,7 +29,7 @@ Partial Class ScalableFromMessage
         Me.CopyMessageToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopySelectionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictureBoxA = New System.Windows.Forms.PictureBox()
-        Me.DateTimeBox = New System.Windows.Forms.TextBox()
+        Me.DateTimeBox = New System.Windows.Forms.Label()
         Me.ContextMenuStrip2.SuspendLayout()
         CType(Me.PictureBoxA, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -90,11 +90,13 @@ Partial Class ScalableFromMessage
         '
         'DateTimeBox
         '
-        Me.DateTimeBox.Location = New System.Drawing.Point(418, 3)
+        Me.DateTimeBox.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DateTimeBox.ForeColor = System.Drawing.Color.DimGray
+        Me.DateTimeBox.Location = New System.Drawing.Point(414, 0)
         Me.DateTimeBox.Name = "DateTimeBox"
-        Me.DateTimeBox.ReadOnly = True
-        Me.DateTimeBox.Size = New System.Drawing.Size(108, 20)
-        Me.DateTimeBox.TabIndex = 6
+        Me.DateTimeBox.Size = New System.Drawing.Size(128, 23)
+        Me.DateTimeBox.TabIndex = 7
+        Me.DateTimeBox.Text = "12/12/2012 00:00:00"
         '
         'ScalableFromMessage
         '
@@ -108,7 +110,6 @@ Partial Class ScalableFromMessage
         Me.ContextMenuStrip2.ResumeLayout(False)
         CType(Me.PictureBoxA, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
@@ -118,5 +119,5 @@ Partial Class ScalableFromMessage
     Friend WithEvents ContextMenuStrip2 As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents CopyMessageToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CopySelectionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents DateTimeBox As System.Windows.Forms.TextBox
+    Friend WithEvents DateTimeBox As System.Windows.Forms.Label
 End Class
