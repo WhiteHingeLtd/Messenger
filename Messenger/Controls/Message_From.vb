@@ -71,4 +71,5 @@ Public Class Message_From
     Private Sub CopyMessageToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles CopyMessageToolStripMenuItem1.Click
         My.Computer.Clipboard.SetText(Realtext.Text)
     End Sub
+
 End Class

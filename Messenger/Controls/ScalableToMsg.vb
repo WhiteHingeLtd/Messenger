@@ -63,15 +63,15 @@ Public Class ScalableToMsg
 
     Private Sub ScalableFromMessage_Paint(sender As Object, e As System.Windows.Forms.PaintEventArgs) Handles MyBase.Paint
         If IsNothing(pImg) Then
-            Dim targetrect As New Rectangle((ActualMessage.Location.X - 5), ActualMessage.Location.Y - 11, ActualMessage.Width + 11, ActualMessage.Height + 18)
-            WHLClasses.FillRoundedRectangle(e.Graphics, targetrect, 16, New SolidBrush(Color.FromArgb(211, 228, 137)))
-            WHLClasses.DrawRoundedRectangle(e.Graphics, targetrect, 16, New Pen(Color.FromArgb(170, 184, 110)))
+            ' Dim targetrect As New Rectangle((ActualMessage.Location.X - 5), ActualMessage.Location.Y - 11, ActualMessage.Width + 11, ActualMessage.Height + 18)
+            'WHLClasses.FillRoundedRectangle(e.Graphics, targetrect, 16, New SolidBrush(Color.FromArgb(211, 228, 137)))
+            'WHLClasses.DrawRoundedRectangle(e.Graphics, targetrect, 16, New Pen(Color.FromArgb(170, 184, 110)))
         Else
             ActualMessage.Size = PictureBoxA.Size
             PictureBoxA.Location = ActualMessage.Location
-            Dim targetrect As New Rectangle((ActualMessage.Location.X - 5), ActualMessage.Location.Y - 11, ActualMessage.Width + 11, ActualMessage.Height + 18)
-            WHLClasses.FillRoundedRectangle(e.Graphics, targetrect, 16, New SolidBrush(Color.FromArgb(211, 228, 137)))
-            WHLClasses.DrawRoundedRectangle(e.Graphics, targetrect, 16, New Pen(Color.FromArgb(170, 184, 110)))
+            'Dim targetrect As New Rectangle((ActualMessage.Location.X - 5), ActualMessage.Location.Y - 11, ActualMessage.Width + 11, ActualMessage.Height + 18)
+            ' WHLClasses.FillRoundedRectangle(e.Graphics, targetrect, 16, New SolidBrush(Color.FromArgb(211, 228, 137)))
+            'WHLClasses.DrawRoundedRectangle(e.Graphics, targetrect, 16, New Pen(Color.FromArgb(170, 184, 110)))
             PictureBoxA.Visible = True
         End If
     End Sub

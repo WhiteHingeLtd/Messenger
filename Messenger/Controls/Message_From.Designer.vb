@@ -26,6 +26,9 @@ Partial Class Message_From
         Me.MessageBubble = New System.Windows.Forms.Panel()
         Me.Messagetext = New System.Windows.Forms.Label()
         Me.Realtext = New System.Windows.Forms.RichTextBox()
+        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CopyMessageToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CopySelectionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictureBoxA = New System.Windows.Forms.PictureBox()
         Me.MessageSubtext = New System.Windows.Forms.Label()
         Me.To_Top = New System.Windows.Forms.PictureBox()
@@ -33,17 +36,14 @@ Partial Class Message_From
         Me.To_Arrow = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.To_Left = New System.Windows.Forms.PictureBox()
-        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.CopyMessageToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CopySelectionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MessageBubble.SuspendLayout()
+        Me.ContextMenuStrip2.SuspendLayout()
         CType(Me.PictureBoxA, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.To_Top, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.To_Bottom, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.To_Arrow, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.To_Left, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip2.SuspendLayout()
         Me.SuspendLayout()
         '
         'MessageBubble
@@ -81,6 +81,24 @@ Partial Class Message_From
         Me.Realtext.Size = New System.Drawing.Size(303, 39)
         Me.Realtext.TabIndex = 2
         Me.Realtext.Text = ""
+        '
+        'ContextMenuStrip2
+        '
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyMessageToolStripMenuItem1, Me.CopySelectionToolStripMenuItem})
+        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(154, 48)
+        '
+        'CopyMessageToolStripMenuItem1
+        '
+        Me.CopyMessageToolStripMenuItem1.Name = "CopyMessageToolStripMenuItem1"
+        Me.CopyMessageToolStripMenuItem1.Size = New System.Drawing.Size(153, 22)
+        Me.CopyMessageToolStripMenuItem1.Text = "Copy Message"
+        '
+        'CopySelectionToolStripMenuItem
+        '
+        Me.CopySelectionToolStripMenuItem.Name = "CopySelectionToolStripMenuItem"
+        Me.CopySelectionToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
+        Me.CopySelectionToolStripMenuItem.Text = "Copy Selection"
         '
         'PictureBoxA
         '
@@ -158,24 +176,6 @@ Partial Class Message_From
         Me.To_Left.TabIndex = 12
         Me.To_Left.TabStop = False
         '
-        'ContextMenuStrip2
-        '
-        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyMessageToolStripMenuItem1, Me.CopySelectionToolStripMenuItem})
-        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(154, 70)
-        '
-        'CopyMessageToolStripMenuItem1
-        '
-        Me.CopyMessageToolStripMenuItem1.Name = "CopyMessageToolStripMenuItem1"
-        Me.CopyMessageToolStripMenuItem1.Size = New System.Drawing.Size(153, 22)
-        Me.CopyMessageToolStripMenuItem1.Text = "Copy Message"
-        '
-        'CopySelectionToolStripMenuItem
-        '
-        Me.CopySelectionToolStripMenuItem.Name = "CopySelectionToolStripMenuItem"
-        Me.CopySelectionToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
-        Me.CopySelectionToolStripMenuItem.Text = "Copy Selection"
-        '
         'Message_From
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -189,13 +189,13 @@ Partial Class Message_From
         Me.Name = "Message_From"
         Me.Size = New System.Drawing.Size(346, 67)
         Me.MessageBubble.ResumeLayout(False)
+        Me.ContextMenuStrip2.ResumeLayout(False)
         CType(Me.PictureBoxA, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.To_Top, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.To_Bottom, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.To_Arrow, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.To_Left, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

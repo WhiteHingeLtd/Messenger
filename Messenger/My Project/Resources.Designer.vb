@@ -133,46 +133,6 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property Corner_BottomLeft() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("Corner_BottomLeft", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property Corner_BottomRight() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("Corner_BottomRight", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property Corner_TopLeft() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("Corner_TopLeft", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property Corner_TopRight() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("Corner_TopRight", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
-        '''</summary>
         Friend ReadOnly Property FB_Settings() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("FB_Settings", resourceCulture)

@@ -323,18 +323,6 @@
     <None Include="Resources\Contact_Online.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Corner_BottomLeft.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Corner_BottomRight.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Corner_TopLeft.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Corner_TopRight.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Side_Bottom.png" />
   </ItemGroup>
   <ItemGroup>
