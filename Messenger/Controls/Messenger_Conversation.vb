@@ -221,4 +221,20 @@ Public Class Messenger_Conversation
         Next
         Me.ResumeLayout()
     End Sub
+    Private Sub OpenFileDialog2_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog2.FileOk
+
+    End Sub
+    Private Sub SendPicture_Click(sender As Object, e As EventArgs) Handles SelectFile.Click
+        OpenFileDialog2.ShowDialog()
+    End Sub
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles SendFile.Click
+        Dim newpath As String = "\\WIN-NOHLS1H9ER8\Data Storage\Noti\" + Now.ToLocalTime.Ticks.ToString + "_" + OpenFileDialog2.SafeFileName
+        My.Computer.FileSystem.CopyFile(OpenFileDialog2.FileName, newpath, FileIO.UIOption.AllDialogs, FileIO.UICancelOption.DoNothing)
+        newpath = newpath.Replace("\", "\\")
+        Dim responseInsert As Object = WHLClasses.MySQL.insertUpdate("INSERT INTO whldata.user_notifications (payrollId, notificationTitle, notificationBody, notificationStyle, notExpiryDateTime, notIsRead, notImgLink, UserFromId) VALUES (" + TargetUserId.ToString + ",'" + "Messenger: " + My.FSL.FindWindow().AuthenticatedUser.FullName + "', '" + MessageTextBox.Text + "', 'Message','" + Now.ToShortDateString + " " + Now.ToLongTimeString + "','True', '" + newpath + "', " + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + ");")
+        If Not responseInsert = 1 Then
+            MsgBox(responseInsert)
+        End If
+    End Sub
 End Class

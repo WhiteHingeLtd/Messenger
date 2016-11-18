@@ -30,6 +30,9 @@ Partial Class Messenger_Conversation
         Me.ConvFlow = New System.Windows.Forms.FlowLayoutPanel()
         Me.OneSecUpdates = New System.Windows.Forms.Timer(Me.components)
         Me.ConversationHeader = New WHLClasses.Controls.FacebookMessengerStyleHeader()
+        Me.SendFile = New System.Windows.Forms.Button()
+        Me.SelectFile = New System.Windows.Forms.Button()
+        Me.OpenFileDialog2 = New System.Windows.Forms.OpenFileDialog()
         Me.ScalableToMsg1 = New LoginModule.ScalableToMsg()
         Me.ScalableFromMessage1 = New LoginModule.ScalableFromMessage()
         Me.ScalableToMsg2 = New LoginModule.ScalableToMsg()
@@ -37,6 +40,7 @@ Partial Class Messenger_Conversation
         Me.SendPanel.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.ConvFlow.SuspendLayout()
+        Me.ConversationHeader.SuspendLayout()
         Me.SuspendLayout()
         '
         'SendPanel
@@ -78,9 +82,9 @@ Partial Class Messenger_Conversation
         Me.SendButton.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SendButton.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SendButton.Location = New System.Drawing.Point(324, -1)
+        Me.SendButton.Location = New System.Drawing.Point(321, -1)
         Me.SendButton.Name = "SendButton"
-        Me.SendButton.Size = New System.Drawing.Size(70, 36)
+        Me.SendButton.Size = New System.Drawing.Size(73, 36)
         Me.SendButton.TabIndex = 2
         Me.SendButton.Text = "Send"
         Me.SendButton.UseVisualStyleBackColor = True
@@ -109,6 +113,8 @@ Partial Class Messenger_Conversation
         Me.ConversationHeader.BackgroundColor = System.Drawing.Color.White
         Me.ConversationHeader.BackgroundOpacity = 0.3!
         Me.ConversationHeader.BaseBorderColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.ConversationHeader.Controls.Add(Me.SendFile)
+        Me.ConversationHeader.Controls.Add(Me.SelectFile)
         Me.ConversationHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.ConversationHeader.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ConversationHeader.Location = New System.Drawing.Point(0, 0)
@@ -117,14 +123,41 @@ Partial Class Messenger_Conversation
         Me.ConversationHeader.TabIndex = 9
         Me.ConversationHeader.Titletext = "Conversation"
         '
+        'SendFile
+        '
+        Me.SendFile.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SendFile.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.SendFile.Location = New System.Drawing.Point(309, 0)
+        Me.SendFile.Name = "SendFile"
+        Me.SendFile.Size = New System.Drawing.Size(85, 50)
+        Me.SendFile.TabIndex = 5
+        Me.SendFile.Text = "Send File"
+        Me.SendFile.UseVisualStyleBackColor = True
+        '
+        'SelectFile
+        '
+        Me.SelectFile.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.SelectFile.Location = New System.Drawing.Point(0, 0)
+        Me.SelectFile.Name = "SelectFile"
+        Me.SelectFile.Size = New System.Drawing.Size(89, 50)
+        Me.SelectFile.TabIndex = 4
+        Me.SelectFile.Text = "Select File"
+        Me.SelectFile.UseVisualStyleBackColor = True
+        '
+        'OpenFileDialog2
+        '
+        Me.OpenFileDialog2.FileName = "OpenFileDialog2"
+        '
         'ScalableToMsg1
         '
         Me.ScalableToMsg1.AutoSize = True
+        Me.ScalableToMsg1.ImagePath = Nothing
         Me.ScalableToMsg1.Location = New System.Drawing.Point(0, 0)
         Me.ScalableToMsg1.Margin = New System.Windows.Forms.Padding(0)
         Me.ScalableToMsg1.MessageText = "This is hopefully a message which spans 2 lines so it should expand a bit."
         Me.ScalableToMsg1.Name = "ScalableToMsg1"
-        Me.ScalableToMsg1.Size = New System.Drawing.Size(359, 63)
+        Me.ScalableToMsg1.Size = New System.Drawing.Size(359, 64)
         Me.ScalableToMsg1.SubText = "RTF"
         Me.ScalableToMsg1.TabIndex = 0
         '
@@ -132,24 +165,25 @@ Partial Class Messenger_Conversation
         '
         Me.ScalableFromMessage1.AutoSize = True
         Me.ScalableFromMessage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.ScalableFromMessage1.Location = New System.Drawing.Point(0, 63)
+        Me.ScalableFromMessage1.ImagePath = Nothing
+        Me.ScalableFromMessage1.Location = New System.Drawing.Point(0, 64)
         Me.ScalableFromMessage1.Margin = New System.Windows.Forms.Padding(0)
-        Me.ScalableFromMessage1.MessageText = "{\rtf1\ansi\ansicpg1252\deff0\deflang2057{\fonttbl{\f0\fnil\fcharset0 Segoe UI;}}" &
-    "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "\viewkind4\uc1\pard\f0\fs18 This is hopefully a message which spans 2 lines so" &
-    " it should expand a bit."
+        Me.ScalableFromMessage1.MessageText = "\viewkind4\uc1d\f0\fs18 This is hopefully a message which spans 2 lines so it sho" &
+    "uld expand a bit."
         Me.ScalableFromMessage1.Name = "ScalableFromMessage1"
-        Me.ScalableFromMessage1.Size = New System.Drawing.Size(413, 60)
+        Me.ScalableFromMessage1.Size = New System.Drawing.Size(547, 64)
         Me.ScalableFromMessage1.SubText = "RTF"
         Me.ScalableFromMessage1.TabIndex = 1
         '
         'ScalableToMsg2
         '
         Me.ScalableToMsg2.AutoSize = True
-        Me.ScalableToMsg2.Location = New System.Drawing.Point(0, 123)
+        Me.ScalableToMsg2.ImagePath = Nothing
+        Me.ScalableToMsg2.Location = New System.Drawing.Point(0, 128)
         Me.ScalableToMsg2.Margin = New System.Windows.Forms.Padding(0)
         Me.ScalableToMsg2.MessageText = "This is hopefully a message which spans 2 lines so it should expand a bit."
         Me.ScalableToMsg2.Name = "ScalableToMsg2"
-        Me.ScalableToMsg2.Size = New System.Drawing.Size(359, 63)
+        Me.ScalableToMsg2.Size = New System.Drawing.Size(359, 64)
         Me.ScalableToMsg2.SubText = "RTF"
         Me.ScalableToMsg2.TabIndex = 2
         '
@@ -158,11 +192,12 @@ Partial Class Messenger_Conversation
         Me.ScalableToMsg3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ScalableToMsg3.AutoSize = True
-        Me.ScalableToMsg3.Location = New System.Drawing.Point(0, 186)
+        Me.ScalableToMsg3.ImagePath = Nothing
+        Me.ScalableToMsg3.Location = New System.Drawing.Point(0, 192)
         Me.ScalableToMsg3.Margin = New System.Windows.Forms.Padding(0)
         Me.ScalableToMsg3.MessageText = "This is hopefully a message which spans 2 lines so it should expand a bit."
         Me.ScalableToMsg3.Name = "ScalableToMsg3"
-        Me.ScalableToMsg3.Size = New System.Drawing.Size(423, 63)
+        Me.ScalableToMsg3.Size = New System.Drawing.Size(423, 64)
         Me.ScalableToMsg3.SubText = "RTF"
         Me.ScalableToMsg3.TabIndex = 3
         '
@@ -180,6 +215,7 @@ Partial Class Messenger_Conversation
         Me.Panel2.ResumeLayout(False)
         Me.ConvFlow.ResumeLayout(False)
         Me.ConvFlow.PerformLayout()
+        Me.ConversationHeader.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -195,4 +231,7 @@ Partial Class Messenger_Conversation
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents MessageTextBox As System.Windows.Forms.RichTextBox
     Friend WithEvents ConversationHeader As WHLClasses.Controls.FacebookMessengerStyleHeader
+    Friend WithEvents SelectFile As System.Windows.Forms.Button
+    Friend WithEvents OpenFileDialog2 As System.Windows.Forms.OpenFileDialog
+    Friend WithEvents SendFile As System.Windows.Forms.Button
 End Class
