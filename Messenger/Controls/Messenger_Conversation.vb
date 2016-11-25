@@ -93,7 +93,7 @@ Public Class Messenger_Conversation
         End If
         MessageTextBox.Focus()
         MessageTextBox.Clear()
-
+        GC.Collect()
         UpdateNewMessages()
 
     End Sub
@@ -237,4 +237,5 @@ Public Class Messenger_Conversation
             MsgBox(responseInsert)
         End If
     End Sub
+
 End Class
