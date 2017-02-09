@@ -37,7 +37,7 @@ Public Class FullscreenLogin
     Dim timerout As Integer = 0
     Dim timerprog As Integer = 0
     Dim timertickb As Boolean = False
-    Dim EmployeeList As New EmployeeCollection
+    Dim EmployeeList As New EmployeeCollection 'I don't like this at all. It has no save if it fails.
 
     Public Sub InitAuth()
         Me.Show()
@@ -89,21 +89,39 @@ Public Class FullscreenLogin
     End Sub
 
     Public Sub LogoutUser(sender As Object)
-        If sender.GetType = (New Timer).GetType Then
-            WHLClasses.MySql.insertupdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGOUT TIMEOUT" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
-        ElseIf sender.Text = "AppClose" Then
-            WHLClasses.MySql.insertupdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGOUT APPCLOSE" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
-        Else
-            WHLClasses.MySql.insertupdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGOUT GENERIC" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
-        End If
-        Authd = False
-        StopTimer()
-        Me.Show()
-        If Standalone Then
-            Notifyicon.Visible = False
+        If Not IsNothing(AuthdEmpl) Then
+            If sender.GetType = (New Timer).GetType Then
+                WHLClasses.MySQL.insertUpdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGOUT TIMEOUT" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
+            ElseIf sender.Text = "AppClose" Then
+                WHLClasses.MySQL.insertUpdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGOUT APPCLOSE" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
+            Else
+                WHLClasses.MySQL.insertUpdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGOUT GENERIC" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
+            End If
+            Authd = False
+            StopTimer()
+            Me.Show()
+            If Standalone Then
+                Notifyicon.Visible = False
+            End If
             FireNotifications.Enabled = False
+        Else
+            'Well stop there. We must have had an SQL timeout when booting up.
+            Authd = False
+            StopTimer()
+            Me.Show()
+            If Standalone Then
+                Notifyicon.Visible = False
+            End If
+            FireNotifications.Enabled = False
+
+            'Now for the important bit.
+
+            EmployeeList = New EmployeeCollection(True)
+            If EmployeeList.Employees.Count = 0 Then
+                Reporting.ReportMinor("Logout failed.", "AuthdEmpl is nothing, and recreating the employee collection failed.") 'For testing purposes.
+            End If
         End If
-        FireNotifications.Enabled = False
+
     End Sub
 
     Private Sub TimerTick(ByVal sender As Object, ByVal e As EventArgs) Handles Idletimer.Tick
