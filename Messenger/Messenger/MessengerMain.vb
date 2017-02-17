@@ -38,7 +38,7 @@ Public Class MessengerMain
     Private Sub UpdateContactStatus()
         Dim MyID As Integer = My.FSL.FindWindow().AuthenticatedUser.PayrollId
 
-        Dim Response As ArrayList = WHLClasses.MSSQLPublic.SelectData("SELECT notificationId, userFromId FROM whldata.whldata.user_notifications WHERE PayrollId='53' GROUP BY UserFromId,notificationId ORDER BY notificationId DESC;")
+        Dim Response As ArrayList = WHLClasses.MSSQLPublic.SelectData("SELECT MAX(notificationid) as LatestID, userFromId FROM whldata.whldata.user_notifications WHERE PayrollId='" + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + "' GROUP BY UserFromId ORDER BY LatestID DESC;")
 
         Dim SortedResponse As New ArrayList
         Dim converterint As Integer = 0
