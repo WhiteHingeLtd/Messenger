@@ -15,7 +15,7 @@ Public Class Messenger_Conversation
         ConversationHeader.Titletext = User.FullName
         TargetUserId = User.PayrollId
         Dim RecentMessages As New ArrayList
-        RecentMessages = WHLClasses.MySQL.SelectData("SELECT * FROM whldata.user_notifications WHERE (payrollId=" + TargetUserId.ToString + " AND UserFromId=" + My.FSL.FindWindow().AuthdEmpl.PayrollId.ToString + ") OR (UserFromId=" + TargetUserId.ToString + " AND  payrollId=" + My.FSL.FindWindow().AuthdEmpl.PayrollId.ToString + ") ORDER BY notificationId DESC LIMIT 100;")
+        RecentMessages = WHLClasses.MSSQLPublic.SelectData("SELECT TOP 100 * FROM whldata.user_notifications WHERE (payrollId=" + TargetUserId.ToString + " AND UserFromId=" + My.FSL.FindWindow().AuthdEmpl.PayrollId.ToString + ") OR (UserFromId=" + TargetUserId.ToString + " AND  payrollId=" + My.FSL.FindWindow().AuthdEmpl.PayrollId.ToString + ") ORDER BY notificationId DESC;")
 
 
         If RecentMessages.Count > 0 Then
@@ -87,7 +87,7 @@ Public Class Messenger_Conversation
         '22/10/16 - Removed it, adding... "escaping" for slashes and apostrophes. Wtf is that word doing in this context. >.>;;;
         Dim theText As String = MessageTextBox.Text.Replace("\", "\\").Replace("'", "\'").Replace(vbCrLf, " ").Replace(vbLf, " ").Replace(vbCr, " ")
 
-        Dim responseInsert As Object = WHLClasses.MySQL.insertUpdate("INSERT INTO whldata.user_notifications (payrollId, notificationTitle, notificationBody, notificationStyle, notExpiryDateTime, notIsRead, notImgLink, UserFromId) VALUES (" + TargetUserId.ToString + ",'" + "Messenger: " + My.FSL.FindWindow().AuthenticatedUser.FullName + "', '" + theText + "', 'Message','" + Now.ToShortDateString + " " + Now.ToLongTimeString + "','True', '" + "" + "', " + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + ");")
+        Dim responseInsert As Object = WHLClasses.MSSQLPublic.insertUpdate("INSERT INTO whldata.user_notifications (payrollId, notificationTitle, notificationBody, notificationStyle, notExpiryDateTime, notIsRead, notImgLink, UserFromId) VALUES (" + TargetUserId.ToString + ",'" + "Messenger: " + My.FSL.FindWindow().AuthenticatedUser.FullName + "', '" + theText + "', 'Message','" + Now.ToShortDateString + " " + Now.ToLongTimeString + "','True', '" + "" + "', " + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + ");")
         If Not IsNumeric(responseInsert) Then
             MsgBox(responseInsert)
         End If
@@ -100,7 +100,7 @@ Public Class Messenger_Conversation
 
     Private Sub UpdateNewMessages()
         Dim RecentMessages As Object
-        RecentMessages = WHLClasses.MySQL.SelectData("SELECT * FROM whldata.user_notifications WHERE (payrollId=" + TargetUserId.ToString + " AND UserFromId=" + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notificationId>" + LastMessageID.ToString + ") OR (UserFromId=" + TargetUserId.ToString + " AND  payrollId=" + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notificationId>" + LastMessageID.ToString + ") ORDER BY notificationId DESC LIMIT 100;")
+        RecentMessages = WHLClasses.MSSQLPublic.SelectData("SELECT TOP 100 * FROM whldata.user_notifications WHERE (payrollId=" + TargetUserId.ToString + " AND UserFromId=" + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notificationId>" + LastMessageID.ToString + ") OR (UserFromId=" + TargetUserId.ToString + " AND  payrollId=" + My.FSL.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notificationId>" + LastMessageID.ToString + ") ORDER BY notificationId DESC;")
         If RecentMessages.GetType = "".GetType Then
             MsgBox(RecentMessages)
         Else

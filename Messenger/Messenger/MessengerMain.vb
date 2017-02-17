@@ -37,8 +37,8 @@ Public Class MessengerMain
 
     Private Sub UpdateContactStatus()
         Dim MyID As Integer = My.FSL.FindWindow().AuthenticatedUser.PayrollId
-        Dim query As String = "SELECT SUBSTRING_INDEX( GROUP_CONCAT(CAST(notificationId AS CHAR) ORDER BY notificationId DESC), ',', 1 ) AS notificationId, userFromId FROM whldata.user_notifications WHERE PayrollId=" + MyID.ToString + " GROUP BY UserFromId ORDER BY notificationId DESC;"
-        Dim Response As ArrayList = SelectData(query)
+
+        Dim Response As ArrayList = WHLClasses.MSSQLPublic.SelectData("SELECT notificationId, userFromId FROM whldata.whldata.user_notifications WHERE PayrollId='53' GROUP BY UserFromId,notificationId ORDER BY notificationId DESC;")
 
         Dim SortedResponse As New ArrayList
         Dim converterint As Integer = 0

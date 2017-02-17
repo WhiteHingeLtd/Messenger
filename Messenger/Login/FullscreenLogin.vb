@@ -7,7 +7,7 @@ Imports System.Speech.Synthesis
 
 Public Class FullscreenLogin
 
-
+    Public LoginCallback As Action = Nothing
     Public AppVerStr As String
     Public AuthdEmpl As Employee
     Dim AuthTimeout As Integer
@@ -89,14 +89,19 @@ Public Class FullscreenLogin
     End Sub
 
     Public Sub LogoutUser(sender As Object)
-        If sender.GetType = (New Timer).GetType Then
-            WHLClasses.MySql.insertupdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGOUT TIMEOUT" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
-        ElseIf sender.Text = "AppClose" Then
-            WHLClasses.MySql.insertupdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGOUT APPCLOSE" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
-        Else
-            WHLClasses.MySql.insertupdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGOUT GENERIC" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
-        End If
-        Authd = False
+        Try
+            If sender.GetType = (New Timer).GetType Then
+                WHLClasses.MSSQLPublic.insertUpdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGOUT TIMEOUT" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
+            ElseIf sender.Text = "AppClose" Then
+                WHLClasses.MSSQLPublic.insertUpdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGOUT APPCLOSE" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
+            Else
+                WHLClasses.MSSQLPublic.insertUpdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGOUT GENERIC" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
+            End If
+        Catch Ex As Exception
+            WHLClasses.MSSQLPublic.insertUpdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGOUT ERROR" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
+
+        End Try
+            Authd = False
         StopTimer()
         Me.Show()
         If Standalone Then
@@ -230,7 +235,7 @@ Public Class FullscreenLogin
         End If
 
         'And we need to record the login to the login log.
-        WHLClasses.MySql.insertupdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGIN" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
+        WHLClasses.MSSQLPublic.insertUpdate("INSERT INTO whldata.log_loginout (UserID, UserFullName, WorkstationName, Action, Time) VALUES (" + AuthdEmpl.PayrollId.ToString + ",'" + AuthdEmpl.FullName + "','" + My.Computer.Name + "','" + "LOGIN" + "','" + Now.ToShortDateString + " " + Now.ToShortTimeString + "');")
 
     End Sub
 
@@ -343,7 +348,7 @@ Public Class FullscreenLogin
 
         Dim IsArrayList As Boolean = True
         Try
-            NotifsWaiting = WHLClasses.MySql.SelectData("SELECT * FROM whldata.user_notifications WHERE payrollId=" + My.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notIsRead='True';")
+            NotifsWaiting = WHLClasses.MSSQLPublic.SelectData("SELECT * FROM whldata.user_notifications WHERE payrollId=" + My.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notIsRead='True';")
         Catch ex As InvalidCastException
             'We hit 4am. It returned a string. We didnt get any notifications. Let's reenable the timer.
             'Give the user a message? .. I can see this being an issue if this becomes a common problem during the day, but it shouldn't. It ISN'T.

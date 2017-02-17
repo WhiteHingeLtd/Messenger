@@ -15,8 +15,8 @@ Public Class Notification
     Private Sub CloseButton_Click(sender As Object, e As EventArgs) Handles CloseButton.Click
         Me.Close()
         'Update that it has been seen.
-        Dim query As String = "UPDATE whldata.user_notifications SET notIsRead='False' WHERE notificationId=" + NotifID.ToString + ";"
-        Dim response As Object = WHLClasses.MySql.insertupdate(query)
+        Dim query As String = "UPDATE whldata.whldata.user_notifications SET notIsRead='False' WHERE notificationId='" + NotifID.ToString + "';"
+        Dim response As Object = WHLClasses.MSSQLPublic.insertUpdate(query)
         Try
             Convert.ToInt16(response)
 
