@@ -7,7 +7,7 @@ Imports System.Speech.Synthesis
 
 Public Class FullscreenLogin
 
-
+    Public LoginCallback As Action = Nothing
     Public AppVerStr As String
     Public AuthdEmpl As Employee
     Dim AuthTimeout As Integer
@@ -245,6 +245,11 @@ Public Class FullscreenLogin
             Notifyicon.Text = AuthdEmpl.FullName + " - Online | WHL Messenger"
             MessengerMain.Show()
             MessengerMain.Activate()
+        End If
+
+        'Do the callback if its happening
+        If Not IsNothing(LoginCallback) Then
+            LoginCallback.Invoke
         End If
 
         'And we need to record the login to the login log.
