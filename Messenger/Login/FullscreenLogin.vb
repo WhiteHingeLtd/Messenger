@@ -80,7 +80,7 @@ Public Class FullscreenLogin
 
     End Sub
 
-    Public Sub replaceUser(NewUser As String)
+    Public Sub ReplaceUser(NewUser As String)
         Dim fakesender As New Label
         fakesender.Text = "Replace"
         LogoutUser(fakesender)

@@ -33,7 +33,7 @@ Public Class Message_From
     End Sub
 
     '// Make the RichTextBox fit its contents.
-    Private Sub rchContents_ContentsResized(sender As Object, e As ContentsResizedEventArgs) Handles Realtext.ContentsResized
+    Private Sub RchContents_ContentsResized(sender As Object, e As ContentsResizedEventArgs) Handles Realtext.ContentsResized
         Dim rch As RichTextBox = sender
         rch.ClientSize = New Size(303, e.NewRectangle.Height)
     End Sub

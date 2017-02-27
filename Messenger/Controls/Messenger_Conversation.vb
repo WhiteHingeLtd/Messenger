@@ -9,6 +9,7 @@ Public Class Messenger_Conversation
 
 
     Public Sub InitiateConversation(User As WHLClasses.Employee)
+        GC.Collect()
         MessengerMain.InboxPanel.Visible = False
         OneSecUpdates.Enabled = False
         ConvFlow.Controls.Clear()
@@ -104,7 +105,15 @@ Public Class Messenger_Conversation
         If RecentMessages.GetType = "".GetType Then
             MsgBox(RecentMessages)
         Else
+            For Each Ctrl As Control In ConvFlow.Controls
+                Try
+                    Ctrl.Dispose()
+                    Ctrl = Nothing
 
+                Catch ex As Exception
+
+                End Try
+            Next
 
             RecentMessages.Reverse()
 
