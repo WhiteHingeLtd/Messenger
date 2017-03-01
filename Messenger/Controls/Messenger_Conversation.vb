@@ -12,6 +12,10 @@ Public Class Messenger_Conversation
         GC.Collect()
         MessengerMain.InboxPanel.Visible = False
         OneSecUpdates.Enabled = False
+        For Each ctrl As Control In ConvFlow.Controls
+            ctrl.Dispose()
+
+        Next
         ConvFlow.Controls.Clear()
         ConversationHeader.Titletext = User.FullName
         TargetUserId = User.PayrollId
@@ -30,7 +34,7 @@ Public Class Messenger_Conversation
                         Dim AnotherBubble As New ScalableToMsg
                         AnotherBubble.SubText = Message(0).ToString + " - " + Message(5)
                         AnotherBubble.DateTimeBox.Text = Message(5).ToString
-                        AnotherBubble.ImagePath = Message(7).ToString
+
                         ConvFlow.Controls.Add(AnotherBubble)
                     End If
                     NewMessageBubble.SubText = Message(0).ToString + " - " + Message(5)
@@ -52,7 +56,7 @@ Public Class Messenger_Conversation
                         Dim AnotherBubble As New ScalableFromMessage
                         AnotherBubble.SubText = Message(0).ToString + " - " + Message(5)
                         AnotherBubble.DateTimeBox.Text = Message(5).ToString
-                        AnotherBubble.ImagePath = Message(7).ToString
+
                         ConvFlow.Controls.Add(AnotherBubble)
                     End If
                     NewMessageBubble.SubText = Message(0).ToString + " - " + Message(5)
@@ -105,15 +109,6 @@ Public Class Messenger_Conversation
         If RecentMessages.GetType = "".GetType Then
             MsgBox(RecentMessages)
         Else
-            For Each Ctrl As Control In ConvFlow.Controls
-                Try
-                    Ctrl.Dispose()
-                    Ctrl = Nothing
-
-                Catch ex As Exception
-
-                End Try
-            Next
 
             RecentMessages.Reverse()
 
@@ -125,7 +120,7 @@ Public Class Messenger_Conversation
                         Dim AnotherBubble As New ScalableToMsg
                         AnotherBubble.SubText = Message(0).ToString + " - " + Message(5)
                         AnotherBubble.DateTimeBox.Text = Message(5).ToString
-                        AnotherBubble.ImagePath = Message(7).ToString
+
                         ConvFlow.Controls.Add(AnotherBubble)
                     End If
                     NewMessageBubble.SubText = Message(0).ToString + " - " + Message(5)
@@ -148,7 +143,7 @@ Public Class Messenger_Conversation
                         Dim AnotherBubble As New ScalableFromMessage
                         AnotherBubble.SubText = Message(0).ToString + " - " + Message(5)
                         AnotherBubble.DateTimeBox.Text = Message(5).ToString
-                        AnotherBubble.ImagePath = Message(7).ToString
+
                         ConvFlow.Controls.Add(AnotherBubble)
                     End If
                     NewMessageBubble.SubText = Message(0).ToString + " - " + Message(5)
