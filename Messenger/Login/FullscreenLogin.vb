@@ -4,6 +4,7 @@ Imports System.Runtime.InteropServices
 Imports WHLClasses
 Imports System.IO
 Imports System.Speech.Synthesis
+Imports WHLClasses.Notifications
 
 Public Class FullscreenLogin
 
@@ -355,11 +356,46 @@ Public Class FullscreenLogin
         NewNotifier.Show()
     End Sub
 
+    Public ConvList as new Dictionary(Of String, NotificationReturnable)
+    Public CurrentNotifs as new List(Of String)
+
+    public sub ComponentClick(sender as object,asd As NotificationComponent)
+        If MessengerMain.Visible = True Then
+            MessengerMain.Activate()
+        Else
+            MessengerMain.Show()
+        End If
+        ConvList(asd.tag).CloseNotification
+        Application.DoEvents()
+        
+        MessengerMain.OpenConversation(MessengerMain.EmpList.FindEmployeeByID(Convert.ToInt32(asd.Tag)))
+        ConvList.Remove(asd.Tag)
+        
+        Dim query As String = "UPDATE whldata.user_notifications SET notIsRead='False' WHERE payrollID=" + AuthdEmpl.PayrollId.ToString + " AND UserFromId="+asd.Tag+" AND NotIsRead='True';"
+        Dim response As Object = WHLClasses.MySql.insertupdate(query)
+    End sub
+    public sub BaseClick(tag As string)
+        If MessengerMain.Visible = True Then
+            MessengerMain.Activate()
+        Else
+            MessengerMain.Show()
+        End If
+        ConvList(tag).CloseNotification
+        Application.DoEvents()
+        
+        MessengerMain.OpenConversation(MessengerMain.EmpList.FindEmployeeByID(Convert.ToInt32(tag)))
+        ConvList.Remove(tag)
+        
+        Dim query As String = "UPDATE whldata.user_notifications SET notIsRead='False' WHERE payrollID=" + AuthdEmpl.PayrollId.ToString + " AND UserFromId="+Tag+" AND NotIsRead='True';"
+        Dim response As Object = WHLClasses.MySql.insertupdate(query)
+
+    End sub
+
     Private Sub FireNotifications_Tick(sender As Object, e As EventArgs) Handles FireNotifications.Tick
         Dim ActuallyDidAny As Boolean = False
         FireNotifications.Interval = 5000
 
-        FireNotifications.Enabled = False
+        'FireNotifications.Enabled = False
 
         Dim NotifsWaiting As New ArrayList
         Dim startpos As Integer = 12
@@ -388,51 +424,86 @@ Public Class FullscreenLogin
 
             End If
 
-            FireNotifications.Enabled = True
+            'FireNotifications.Enabled = True
             IsArrayList = False 'Ensure we only try to show notifications if it worked.
         End Try
 
         If IsArrayList Then
-            For Each Notideath As ArrayList In NotifsWaiting
-                Dim newNotification As New Notification
-                newNotification.NotificationTitle.Text = Notideath(2)
-                'newNotification.NotificationBody.Text = Notideath(3) //Dead now
-                newNotification.NotifID = Notideath(0)
-                newNotification.Startpos = startpos
-                newNotification.DateBox.Text = Notideath(5).ToString
-                newNotification.EmpId = Notideath(8)
-                If Notideath(4).ToString = "Message" Then
-                    'newNotification.NotificationBody.Visible = False //Dead now
-                    newNotification.Body2.Visible = True
-                    newNotification.Body2.Text = Notideath(3)
 
-                    '-----   -----  -----   -----   -----
-                    '07/05/16 - Gotta get rid of the "TheMessageBeginsHere" at the start
-                    newNotification.Body2.Text = newNotification.Body2.Text.Replace("--TMBH--", "")
-                    '-----   -----  -----   -----   -----
 
-                    newNotification.IconBox.Visible = True
+            For each row As ArrayList in NotifsWaiting
+                
+                if not CurrentNotifs.Contains(row(0).ToString)
+                    CurrentNotifs.Add(row(0).ToString)
+                    '(0) notificaitonID
+                    '(1) payrollID (user sent to)
+                    '(2) notification title
+                    '(3) notificationbody (the actual message)
+                    '(4) notificationStyle 9just "message" all the way
+                    '(5) notExpiryDateTime (time sent)
+                    '(6) notIsRead (is unread)
+                    '(7) notImgLink (A link to an image if it was sent)
+                    '(8) userFromId (sender)
+
+                    try
+                        'We have a notification up for it already.
+                        Dim CurNot as NotificationReturnable = ConvList(row(8).ToString)
+                        'Just add the extra block.
+                    catch
+                        ConvList(row(8).ToString).Tag = row(8).ToString
+                    end try
+                    if row(7).ToString.Length > 0
+                    End If
                 End If
-                If Notideath(7).ToString.Length > 0 Then
-                    newNotification.ProperBody.Left = 126
-                    newNotification.ProperBody.Width = 442
-                    newNotification.IconBox.ImageLocation = Notideath(7)
-                Else
-                    newNotification.ProperBody.Left = 6
-                    newNotification.ProperBody.Width = 562
-                End If
-                Dim hwnd As Integer
-                hwnd = User32.GetActiveWindow
-                newNotification.Show()
-                User32.SetActiveWindow(hwnd)
-                startpos = startpos + 180
-                If startpos > 960 Then startpos = 12
-                ActuallyDidAny = True
+
             Next
-            If ActuallyDidAny Then
-            Else
-                FireNotifications.Enabled = True
-            End If
+            
+
+
+
+
+
+            '''' Fuuuuuck all this old shit.
+            'For Each Notideath As ArrayList In NotifsWaiting
+            '    Dim newNotification As New Notification
+            '    newNotification.NotificationTitle.Text = Notideath(2)
+            '    'newNotification.NotificationBody.Text = Notideath(3) //Dead now
+            '    newNotification.NotifID = Notideath(0)
+            '    newNotification.Startpos = startpos
+            '    newNotification.DateBox.Text = Notideath(5).ToString
+            '    newNotification.EmpId = Notideath(8)
+            '    If Notideath(4).ToString = "Message" Then
+            '        'newNotification.NotificationBody.Visible = False //Dead now
+            '        newNotification.Body2.Visible = True
+            '        newNotification.Body2.Text = Notideath(3)
+
+            '        '-----   -----  -----   -----   -----
+            '        '07/05/16 - Gotta get rid of the "TheMessageBeginsHere" at the start
+            '        newNotification.Body2.Text = newNotification.Body2.Text.Replace("--TMBH--", "")
+            '        '-----   -----  -----   -----   -----
+
+            '        newNotification.IconBox.Visible = True
+            '    End If
+            '    If Notideath(7).ToString.Length > 0 Then
+            '        newNotification.ProperBody.Left = 126
+            '        newNotification.ProperBody.Width = 442
+            '        newNotification.IconBox.ImageLocation = Notideath(7)
+            '    Else
+            '        newNotification.ProperBody.Left = 6
+            '        newNotification.ProperBody.Width = 562
+            '    End If
+            '    Dim hwnd As Integer
+            '    hwnd = User32.GetActiveWindow
+            '    newNotification.Show()
+            '    User32.SetActiveWindow(hwnd)
+            '    startpos = startpos + 180
+            '    If startpos > 960 Then startpos = 12
+            '    ActuallyDidAny = True
+            'Next
+            'If ActuallyDidAny Then
+            'Else
+            '    'FireNotifications.Enabled = True
+            'End If
         End If
 
     End Sub
