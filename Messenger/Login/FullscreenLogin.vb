@@ -449,13 +449,10 @@ Public Class FullscreenLogin
                         'We have a notification up for it already.
                         Dim CurNot as NotificationReturnable = ConvList(row(8).ToString)
                         'Just add the extra block.
-                        CurNot.AddComponent(new TextOnlyNotification(row(3),AddressOf ComponentClick, row(8).ToString,false, 200))
                     catch
-                        ConvList.Add(row(8).ToString,Notifications.CreateNotification(MessengerMain.EmpList.FindEmployeeByID(Convert.ToInt32(row(8).ToString)).FullName,{new TextOnlyNotification(row(3),AddressOf ComponentClick, row(8).ToString,false, 200)},-1,sub() BaseClick(row(8).ToString)))
                         ConvList(row(8).ToString).Tag = row(8).ToString
                     end try
                     if row(7).ToString.Length > 0
-                        ConvList(row(8).ToString).AddComponent(new TextOnlyNotification(MessengerMain.EmpList.FindEmployeeByID(Convert.ToInt32(row(8).ToString)).FullName + " sent an image",AddressOf ComponentClick, row(8).ToString,false, 200))
                     End If
                 End If
 
