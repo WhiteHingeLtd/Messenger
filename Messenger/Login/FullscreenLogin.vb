@@ -4,6 +4,7 @@ Imports System.Runtime.InteropServices
 Imports WHLClasses
 Imports System.IO
 Imports System.Speech.Synthesis
+Imports MySql.Data.MySqlClient
 
 Public Class FullscreenLogin
 
@@ -387,9 +388,14 @@ Public Class FullscreenLogin
                 End Select
 
             End If
-
             FireNotifications.Enabled = True
             IsArrayList = False 'Ensure we only try to show notifications if it worked.
+        Catch ex As MySqlException
+            FireNotifications.Enabled = True
+            IsArrayList = False 'Ensure we only try to show notifications if it worked.
+        Catch ex As System.TimeoutException
+            IsArrayList = False
+            FireNotifications.Enabled = True
         End Try
 
         If IsArrayList Then

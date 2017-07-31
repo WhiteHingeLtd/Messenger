@@ -38,7 +38,7 @@ Public Class MessengerMain
     Private Sub UpdateContactStatus()
         Dim MyID As Integer = My.FSL.FindWindow().AuthenticatedUser.PayrollId
         Dim query As String = "SELECT SUBSTRING_INDEX( GROUP_CONCAT(CAST(notificationId AS CHAR) ORDER BY notificationId DESC), ',', 1 ) AS notificationId, userFromId FROM whldata.user_notifications WHERE PayrollId=" + MyID.ToString + " GROUP BY UserFromId ORDER BY notificationId DESC;"
-        Dim Response As ArrayList = SelectData(query)
+        Dim Response As ArrayList = WHLClasses.MySQL.SelectData(query)
 
         Dim SortedResponse As New ArrayList
         Dim converterint As Integer = 0
@@ -119,8 +119,15 @@ Public Class MessengerMain
     End Sub
 
     Private Sub TenSecUpdates_Tick(sender As Object, e As EventArgs) Handles TenSecUpdates.Tick
-        UpdateContactStatus()
-
+        Try
+            UpdateContactStatus()
+        Catch ex As TimeoutException
+            Try
+                UpdateContactStatus()
+            Catch ex1 As TimeoutException
+                'Updating Contact Status Failed
+            End Try
+        End Try
     End Sub
 
 
