@@ -365,39 +365,40 @@ Public Class FullscreenLogin
         Dim NotifsWaiting As New ArrayList
         Dim startpos As Integer = 12
 
-        Dim IsArrayList As Boolean = True
+        Dim IsArrayList = True
         Try
             NotifsWaiting = WHLClasses.MySql.SelectData("SELECT * FROM whldata.user_notifications WHERE payrollId=" + My.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notIsRead='True';")
-        Catch ex As InvalidCastException
-            'We hit 4am. It returned a string. We didnt get any notifications. Let's reenable the timer.
-            'Give the user a message? .. I can see this being an issue if this becomes a common problem during the day, but it shouldn't. It ISN'T.
-            'Basically, this'll hold up the check for notifications until the user has seen this error.
-            Dim messageAddition As String = ""
-            If Now.Hour = 3 Or Now.Hour = 4 Then
-                MsgBox("An error occurred while trying to collect messages at: " + Now.ToString("yyyy/MM/dd HH:mm:ss") + ". It's justified at this time of the morning though, the server is incredibly busy. Please turn off messenger before leaving to avoid this error in the future.")
-            Else
-                Dim resultOfMsg As MsgBoxResult = MsgBox("An error occurred while trying to collect messages at: " + Now.ToString("yyyy/MM/dd HH:mm:ss") + ". It's likely however that this isn't down to the server simply being busy, but this might be the case. Would you like to report this issue.", MsgBoxStyle.YesNoCancel, "Data collection error")
-                Select Case resultOfMsg
-                    Case MsgBoxResult.Yes
-                        Reporting.ReportException(ex)
-                    Case MsgBoxResult.No
-                        'Do nothing
-                    Case MsgBoxResult.Cancel
-                        'Close messenger - in the event we get caught in a loop somehow and the server keeps telling people to send reports, we can tell them to exit.
-                        Application.Exit()
-                End Select
-
-            End If
-            FireNotifications.Enabled = True
-            IsArrayList = False 'Ensure we only try to show notifications if it worked.
-        Catch ex As MySqlException
-            FireNotifications.Enabled = True
-            IsArrayList = False 'Ensure we only try to show notifications if it worked.
-        Catch ex As System.TimeoutException
+        Catch ex As Exception
             IsArrayList = False
-            FireNotifications.Enabled = True
         End Try
-
+        If Not(IsArrayList) 'Second Attempt
+            Try
+                NotifsWaiting = WHLClasses.MySql.SelectData("SELECT * FROM whldata.user_notifications WHERE payrollId=" + My.FindWindow().AuthenticatedUser.PayrollId.ToString + " AND notIsRead='True';")
+            Catch ex As InvalidCastException
+                'We hit 4am. It returned a string. We didnt get any notifications. Let's reenable the timer.
+                'Give the user a message? .. I can see this being an issue if this becomes a common problem during the day, but it shouldn't. It ISN'T.
+                'Basically, this'll hold up the check for notifications until the user has seen this error.
+                If Now.Hour = 3 Or Now.Hour = 4 Then
+                    MsgBox("An error occurred while trying to collect messages at: " + Now.ToString("yyyy/MM/dd HH:mm:ss") + ". It's justified at this time of the morning though, the server is incredibly busy. Please turn off messenger before leaving to avoid this error in the future.")
+                Else
+                        ex.Data.Add("Time",DateTime.Now)
+                    If Not(My.Computer.Network.Ping("10.20.0.102",100))
+                        ex.Data.Add("Ping Failed",True)
+                        Reporting.ReportException(ex)
+                    End If
+                        
+                End If
+                FireNotifications.Enabled = True
+                IsArrayList = False 'Ensure we only try to show notifications if it worked.
+            Catch ex As MySqlException
+                FireNotifications.Enabled = True
+                IsArrayList = False 'Ensure we only try to show notifications if it worked.
+            Catch ex As System.TimeoutException
+                IsArrayList = False
+                FireNotifications.Enabled = True
+            End Try
+        End If
+        
         If IsArrayList Then
             For Each Notideath As ArrayList In NotifsWaiting
                 Dim newNotification As New Notification
