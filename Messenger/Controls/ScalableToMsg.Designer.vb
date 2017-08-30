@@ -105,6 +105,7 @@ Partial Class ScalableToMsg
         '
         'EmbedBrowser
         '
+        Me.EmbedBrowser.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.EmbedBrowser.Location = New System.Drawing.Point(170, 11)
         Me.EmbedBrowser.MinimumSize = New System.Drawing.Size(20, 20)
         Me.EmbedBrowser.Name = "EmbedBrowser"
