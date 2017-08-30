@@ -159,7 +159,7 @@ Public Class MessengerMain
     End Sub
 
     Private Sub MessengerMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        WHLClasses.MiscFunctions.UpgradeWebBrowser()
     End Sub
 
     Private Sub ChangeLoginPINItem_Click(sender As Object, e As EventArgs) Handles ChangeLoginPINItem.Click

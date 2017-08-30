@@ -1,10 +1,12 @@
 ﻿Imports System.Drawing
+Imports System.Text.RegularExpressions
 
 Public Class ScalableToMsg
 
     Dim pMessageText As String
     Dim pSubText As String
     Dim pImg As String = Nothing
+    Dim IgnoreResize As Boolean = False
     Public Property ImagePath As String
         Set(value As String)
             pImg = value
@@ -19,7 +21,20 @@ Public Class ScalableToMsg
         Set(value As String)
             Dim betterText As String = RTFMurder(value)
             pMessageText = betterText
-            ActualMessage.Text = betterText
+
+            Dim RM As New Regex("#frame\|(.+)#")
+            Dim match = RM.Match(value)
+            If match.Success Then
+                ActualMessage.Width = 400
+                IgnoreResize = True
+                Me.Height = 322
+                EmbedBrowser.Visible = True
+                EmbedBrowser.Navigate(match.Groups(1).Value)
+            Else
+                IgnoreResize = False
+                ActualMessage.Text = betterText
+            End If
+
             GC.Collect()
         End Set
         Get
@@ -77,7 +92,7 @@ Public Class ScalableToMsg
     End Sub
 
     Private Sub ActualMessage_ContentsResized(sender As Object, e As System.Windows.Forms.ContentsResizedEventArgs) Handles ActualMessage.ContentsResized
-        If IsNothing(pImg) Then
+        If IsNothing(pImg) And Not IgnoreResize Then
             Me.Height = e.NewRectangle.Height + 22
             If e.NewRectangle.Width > 400 Then
                 ActualMessage.Width = 400

@@ -30,6 +30,7 @@ Partial Class ScalableFromMessage
         Me.CopySelectionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictureBoxA = New System.Windows.Forms.PictureBox()
         Me.DateTimeBox = New System.Windows.Forms.Label()
+        Me.EmbedBrowser = New System.Windows.Forms.WebBrowser()
         Me.ContextMenuStrip2.SuspendLayout()
         CType(Me.PictureBoxA, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -98,9 +99,20 @@ Partial Class ScalableFromMessage
         Me.DateTimeBox.TabIndex = 7
         Me.DateTimeBox.Text = "12/12/2012 00:00:00"
         '
+        'EmbedBrowser
+        '
+        Me.EmbedBrowser.Location = New System.Drawing.Point(8, 11)
+        Me.EmbedBrowser.MinimumSize = New System.Drawing.Size(20, 20)
+        Me.EmbedBrowser.Name = "EmbedBrowser"
+        Me.EmbedBrowser.ScriptErrorsSuppressed = True
+        Me.EmbedBrowser.Size = New System.Drawing.Size(400, 300)
+        Me.EmbedBrowser.TabIndex = 8
+        Me.EmbedBrowser.Visible = False
+        '
         'ScalableFromMessage
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
+        Me.Controls.Add(Me.EmbedBrowser)
         Me.Controls.Add(Me.DateTimeBox)
         Me.Controls.Add(Me.PictureBoxA)
         Me.Controls.Add(Me.ActualMessage)
@@ -120,4 +132,5 @@ Partial Class ScalableFromMessage
     Friend WithEvents CopyMessageToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CopySelectionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DateTimeBox As System.Windows.Forms.Label
+    Friend WithEvents EmbedBrowser As System.Windows.Forms.WebBrowser
 End Class

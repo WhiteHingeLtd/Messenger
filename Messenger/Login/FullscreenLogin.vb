@@ -4,6 +4,7 @@ Imports System.Runtime.InteropServices
 Imports WHLClasses
 Imports System.IO
 Imports System.Speech.Synthesis
+Imports System.Text.RegularExpressions
 Imports MySql.Data.MySqlClient
 
 Public Class FullscreenLogin
@@ -418,9 +419,15 @@ Public Class FullscreenLogin
                     newNotification.Body2.Text = newNotification.Body2.Text.Replace("--TMBH--", "")
                     '-----   -----  -----   -----   -----
 
-                    newNotification.IconBox.Visible = True
+                    Dim RM As New Regex("#frame\|(.+)#")
+                    Dim match = RM.Match(newNotification.Body2.Text)
+                    If match.Success Then
+
+                        newNotification.Body2.Text = newNotification.Body2.Text.Replace($"#frame|{match.Groups(1).Value}#", match.Groups(1).Value)
+                    End If
+
                 End If
-                If Notideath(7).ToString.Length > 0 Then
+                    If Notideath(7).ToString.Length > 0 Then
                     newNotification.ProperBody.Left = 126
                     newNotification.ProperBody.Width = 442
                     newNotification.IconBox.ImageLocation = Notideath(7)

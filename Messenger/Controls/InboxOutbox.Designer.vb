@@ -41,11 +41,11 @@ Partial Class InboxOutbox
         '
         'Updater
         '
-        Me.Updater.Interval = 12000
+        Me.Updater.Interval = 45000
         '
         'ZoneTitle
         '
-        Me.ZoneTitle.BackColor = System.Drawing.Color.White
+        Me.ZoneTitle.BackColor = System.Drawing.Color.Transparent
         Me.ZoneTitle.BackgroundColor = System.Drawing.Color.White
         Me.ZoneTitle.BackgroundOpacity = 0.75!
         Me.ZoneTitle.BaseBorderColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))

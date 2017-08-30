@@ -42,8 +42,8 @@ Partial Class MessengerMain
         Me.TenSecUpdates = New System.Windows.Forms.Timer(Me.components)
         Me.MainSettingsContextMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.LogOutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.QuitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ChangeLoginPINItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.QuitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConversationPanel.SuspendLayout()
         Me.InboxPanel.SuspendLayout()
         Me.MyInfo.SuspendLayout()
@@ -213,13 +213,13 @@ Partial Class MessengerMain
         'TenSecUpdates
         '
         Me.TenSecUpdates.Enabled = True
-        Me.TenSecUpdates.Interval = 10000
+        Me.TenSecUpdates.Interval = 60000
         '
         'MainSettingsContextMenu
         '
         Me.MainSettingsContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LogOutToolStripMenuItem, Me.ChangeLoginPINItem, Me.QuitToolStripMenuItem})
         Me.MainSettingsContextMenu.Name = "MainSettingsContextMenu"
-        Me.MainSettingsContextMenu.Size = New System.Drawing.Size(171, 92)
+        Me.MainSettingsContextMenu.Size = New System.Drawing.Size(171, 70)
         '
         'LogOutToolStripMenuItem
         '
@@ -227,17 +227,17 @@ Partial Class MessengerMain
         Me.LogOutToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.LogOutToolStripMenuItem.Text = "Log out"
         '
-        'QuitToolStripMenuItem
-        '
-        Me.QuitToolStripMenuItem.Name = "QuitToolStripMenuItem"
-        Me.QuitToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
-        Me.QuitToolStripMenuItem.Text = "Quit"
-        '
         'ChangeLoginPINItem
         '
         Me.ChangeLoginPINItem.Name = "ChangeLoginPINItem"
         Me.ChangeLoginPINItem.Size = New System.Drawing.Size(170, 22)
         Me.ChangeLoginPINItem.Text = "Change Login PIN"
+        '
+        'QuitToolStripMenuItem
+        '
+        Me.QuitToolStripMenuItem.Name = "QuitToolStripMenuItem"
+        Me.QuitToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.QuitToolStripMenuItem.Text = "Quit"
         '
         'MessengerMain
         '
