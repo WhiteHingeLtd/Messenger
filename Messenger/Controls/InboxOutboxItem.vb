@@ -1,4 +1,5 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Text.RegularExpressions
+Imports System.Windows.Forms
 
 Public Class InboxOutboxItem
 
@@ -81,6 +82,13 @@ Public Class InboxOutboxItem
             Catch ex As Exception
                 MessageBody.Text = value
             End Try
+
+            Dim RM As New Regex("#frame\|(.+)#")
+            Dim match = RM.Match(MessageBody.Text)
+            If match.Success Then
+
+                MessageBody.Text = MessageBody.Text.Replace($"#frame|{match.Groups(1).Value}#", match.Groups(1).Value)
+            End If
 
         End Set
     End Property
