@@ -274,13 +274,13 @@ Public Class FullscreenLogin
         AppVer.Text = My.Application.Info.AssemblyName.ToString + " - v" + AppVerStr
         If Standalone Then
             Keypadcover.Visible = False
-            ControlBox.Visible = True
+            ControlsBox.Visible = True
             AppVer.Visible = False
             PowerButton.Visible = False
             FSLoginWindowText.Text = "Messenger Login"
         Else
             Keypadcover.Visible = True
-            ControlBox.Visible = False
+            ControlsBox.Visible = False
             AppVer.Visible = True
             PowerButton.Visible = True
             FSLoginWindowText.Text = "Login"

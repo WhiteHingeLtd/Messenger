@@ -48,7 +48,7 @@ Partial Class FullscreenLogin
         Me.Label2 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.ControlBox = New System.Windows.Forms.Panel()
+        Me.ControlsBox = New System.Windows.Forms.Panel()
         Me.Button13 = New System.Windows.Forms.Button()
         Me.Button12 = New System.Windows.Forms.Button()
         Me.AppVer = New System.Windows.Forms.Label()
@@ -68,7 +68,7 @@ Partial Class FullscreenLogin
         CType(Me.PowerButton, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
-        Me.ControlBox.SuspendLayout()
+        Me.ControlsBox.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -327,7 +327,7 @@ Partial Class FullscreenLogin
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.Color.Gray
-        Me.Panel3.Controls.Add(Me.ControlBox)
+        Me.Panel3.Controls.Add(Me.ControlsBox)
         Me.Panel3.Controls.Add(Me.AppVer)
         Me.Panel3.Controls.Add(Me.FSLoginWindowText)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
@@ -336,15 +336,15 @@ Partial Class FullscreenLogin
         Me.Panel3.Size = New System.Drawing.Size(523, 27)
         Me.Panel3.TabIndex = 1
         '
-        'ControlBox
+        'ControlsBox
         '
-        Me.ControlBox.Controls.Add(Me.Button13)
-        Me.ControlBox.Controls.Add(Me.Button12)
-        Me.ControlBox.Location = New System.Drawing.Point(444, 0)
-        Me.ControlBox.Name = "ControlBox"
-        Me.ControlBox.Size = New System.Drawing.Size(80, 27)
-        Me.ControlBox.TabIndex = 2
-        Me.ControlBox.Visible = False
+        Me.ControlsBox.Controls.Add(Me.Button13)
+        Me.ControlsBox.Controls.Add(Me.Button12)
+        Me.ControlsBox.Location = New System.Drawing.Point(444, 0)
+        Me.ControlsBox.Name = "ControlsBox"
+        Me.ControlsBox.Size = New System.Drawing.Size(80, 27)
+        Me.ControlsBox.TabIndex = 2
+        Me.ControlsBox.Visible = False
         '
         'Button13
         '
@@ -487,7 +487,7 @@ Partial Class FullscreenLogin
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
-        Me.ControlBox.ResumeLayout(False)
+        Me.ControlsBox.ResumeLayout(False)
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -526,7 +526,7 @@ Partial Class FullscreenLogin
     Friend WithEvents LogoutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SendANotificationToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ControlBox As System.Windows.Forms.Panel
+    Friend WithEvents ControlsBox As System.Windows.Forms.Panel
     Friend WithEvents Button13 As System.Windows.Forms.Button
     Friend WithEvents Button12 As System.Windows.Forms.Button
     Friend WithEvents AutoLoginMaker As System.Windows.Forms.Timer
