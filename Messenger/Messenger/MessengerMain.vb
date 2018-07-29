@@ -11,6 +11,8 @@ Public Class MessengerMain
         LoggedUserNew.Titletext = My.FSL.FindWindow().AuthenticatedUser.FullName
         UpdateContactStatus()
         Set_Inbox(sender, e)
+
+        UninstallDialog.Show()
     End Sub
 
     Public Sub Notify_Start()

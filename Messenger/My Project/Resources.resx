@@ -124,6 +124,9 @@
   <data name="From_Arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\From_Arrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="FB_Settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FB_Settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="From_Top" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\From_Top.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -142,9 +145,6 @@
   <data name="To_Left" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\To_Left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="To_Bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\To_Bottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Outbox" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Outbox.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -154,8 +154,8 @@
   <data name="Side_Bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Side_Bottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Fushmesh" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Fushmesh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="To_Bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\To_Bottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Contact_Online" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Contact_Online.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -202,6 +202,9 @@
   <data name="lockicon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\lockicon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Fushmesh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Fushmesh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Side_Top" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Side_Top.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -217,7 +220,7 @@
   <data name="To_BubbleArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\To_BubbleArrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FB_Settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FB_Settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="TeamsMigration" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TeamsMigration.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

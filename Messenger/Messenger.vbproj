@@ -25,7 +25,7 @@
     <InstallUrl>http://apps.ad.whitehinge.com/AppPublish/LoginMod/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationRevision>17</ApplicationRevision>
     <ApplicationVersion>1.0.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -86,9 +86,9 @@
     <ApplicationIcon>chacticon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>\\WIN-NOHLS1H9ER8\Profiles\Colin\.V5\Documents\Projects\Framework\Framework\Refs\MySql.Data.dll</HintPath>
+      <HintPath>..\..\Framework\Framework\bin\Debug\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Class1.vb" />
     <Compile Include="Controls\InboxOutbox.Designer.vb">
       <DependentUpon>InboxOutbox.vb</DependentUpon>
     </Compile>
@@ -220,6 +221,13 @@
     <Compile Include="Controls\ScalableToMsg.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Uninstall.vb" />
+    <Compile Include="UninstallDialog.Designer.vb">
+      <DependentUpon>UninstallDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UninstallDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\InboxOutbox.resx">
@@ -271,6 +279,9 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UninstallDialog.resx">
+      <DependentUpon>UninstallDialog.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -381,6 +392,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="chacticon.ico" />
+    <None Include="Resources\TeamsMigration.png" />
     <None Include="Resources\FB_Settings.png" />
     <None Include="Resources\Untitled-1.jpg" />
     <None Include="Resources\Close.png" />
@@ -392,23 +404,13 @@
   <ItemGroup>
     <PublishFile Include="chacticon.ico">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="MySql.Data">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>
   <ItemGroup>
